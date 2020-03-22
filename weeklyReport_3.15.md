@@ -1,19 +1,20 @@
 # JUST TAKE IT DOWN
-- [JUST TAKE IT DOWN](#just-take-it-down)
-  - [Preface](#preface)
-  - [Vim](#vim)
-    - [Motion](#motion)
-      - [Common Motion](#common-motion)
-      - [Jump Motion](#jump-motion)
-    - [Buffer, Window and Tab in VIM](#buffer-window-and-tab-in-vim)
-      - [Window Commands](#window-commands)
-      - [Terminal Window In VIM](#terminal-window-in-vim)
-      - [Tab Page Commands and Operations](#tab-page-commands-and-oprations)
-    - [Editing](#editing)
-  - [Markdown(CommonMark)](#markdowncommonmark)
-    - [Paragraph](#paragraph)
-    - [Links and Images](#links-and-images)
-  - [In Case I Forget Again](#in-case-i-forget-again)
+
+- [Preface](#preface)
+- [Vim](#vim)
+  - [Motion](#motion)
+    - [Common Motion](#common-motion)
+    - [Jump Motion](#jump-motion)
+  - [Buffer, Window and Tab in VIM](#buffer-window-and-tab-in-vim)
+    - [Window Commands](#window-commands)
+    - [Terminal Window In VIM](#terminal-window-in-vim)
+    - [Tab Page Commands and Operations](#tab-page-commands-and-oprations)
+  - [Editing](#editing)
+- [Markdown(CommonMark)](#markdowncommonmark)
+  - [Paragraph](#paragraph)
+  - [Links and Images](#links-and-images)
+- [In Case I Forget Again](#in-case-i-forget-again)
+
 ## Preface
 
 OK, I have to admit, I am not a fan of taking notes whenever I am learning something new.\
