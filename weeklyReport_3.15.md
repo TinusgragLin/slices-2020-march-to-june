@@ -8,7 +8,7 @@
     - [Buffer, Window and Tab in VIM](#buffer-window-and-tab-in-vim)
       - [Window Commands](#window-commands)
       - [Terminal Window In VIM](#terminal-window-in-vim)
-      - [Tab Page Commands and Oprations](#tab-page-commands-and-oprations)
+      - [Tab Page Commands and Operations](#tab-page-commands-and-oprations)
     - [Editing](#editing)
   - [Markdown(CommonMark)](#markdowncommonmark)
     - [Paragraph](#paragraph)
@@ -18,9 +18,9 @@
 
 OK, I have to admit, I am not a fan of taking notes whenever I am learning something new.\
 You know, you will just tell yourself "Come on, of course I can remember this" and invariably turn out\
-to forget every detal you should pay attention to.
+to forget every detail you should pay attention to.
 
-Although I have this disagreement against `好记性不如烂笔头` as I reckon that the capablibiy of memorizing\
+Although I have this disagreement against `好记性不如烂笔头` as I reckon that the capability of memorizing\
 is actually a result of training and the more we rely on notebooks just to remember things, the worse our \
 memory become, and we need to **construct** a system, not merely "remember" all these pieces of fragments\
 I do have perceived the necessity to just take things down and fathom deeper during this process.
@@ -31,7 +31,7 @@ I do have perceived the necessity to just take things down and fathom deeper dur
 
 #### Common Motion
 
-|Opration|Description|
+|Operation|Description|
 |--|--|
 |**g0**, **g[home]**|To the first character of current **screen line**|
 |**g^**|To the first __non-blank__ character of current **screen line**|
@@ -63,7 +63,7 @@ I do have perceived the necessity to just take things down and fathom deeper dur
 
 2. Change List Jump
 
-   |Opration|Description|
+   |Operation|Description|
    |--|--|
    |{count}**g;**|To the {count} older position in change list.|
    |{count}**g,**|To the {count} newer position in change list.|
@@ -115,7 +115,7 @@ I do have perceived the necessity to just take things down and fathom deeper dur
 
 Basic use:
 - Use `:ter(minal) {command}` to start a terminal emulator and execute {command}, and\
-  the outputs of the {command} will be showed on a new window.If the {command} is not given\
+  the outputs of the {command} will be showed on a new window. If the {command} is not given\
   VIM will open a new shell window.
 
 Terminal-Job and Terminal-Normal mod
@@ -127,9 +127,10 @@ Terminal-Job and Terminal-Normal mod
   will invoke a switch to Terminal-Job mod.
 - In Terminal-Job mode, you can also use `C-W,:` to enter vim command line.
   
+
 More at `help terminal`
 
-#### Tab Page Commands and Oprations
+#### Tab Page Commands and Operations
 
 |Command|Description|
 |--|--|
@@ -139,7 +140,7 @@ More at `help terminal`
 |{count}**tabo(nly)**|Close all tab pages except {count} one|
 |**tabm(ove) +[N]/-[N]**|Move the current tab page [N] places to the right(+) or left(-)|
 
-|Opration|Description|Shortcut Key|
+|Operation|Description|Shortcut Key|
 |--|--|--|
 |**gt/gT**|Jump to the next/previous tab page|`C-PgDn`/`C-PgUp`|
 
@@ -165,7 +166,7 @@ More at `help terminal`
 > Link text is enclosed by **square brackets []**, and for inline links, the link URL is enclosed by **parens ()**. 
 
 	[text](http://a.com "title")
-
+	
 	[text][id]
 	⋮
 	[id]: http://b.org/ "title"
@@ -173,7 +174,7 @@ More at `help terminal`
 Images are almost identical to links, but a image starts with `!`.
 
 	![alternative text](http://a.com/b.jpg "title")
-
+	
 	![alternative text][id]
 	⋮
 	[id]: http://b.org/c.jpg "title"
