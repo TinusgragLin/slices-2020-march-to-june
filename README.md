@@ -2,5 +2,5 @@
 ======================
 
 - [ ] 03.08
-- [x] [03.15]() : VIM(Motion, Window \& Tab), CommonMark
+- [x] [03.15](https://github.com/TinusgragLin/gitlearning/blob/master/README.md) : VIM(Motion, Window \& Tab), CommonMark
 - [ ] 03.22
