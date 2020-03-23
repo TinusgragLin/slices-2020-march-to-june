@@ -1,19 +1,21 @@
 # JUST TAKE IT DOWN
 
-- [Preface](#preface)
-- [Vim](#vim)
-  - [Motion](#motion)
-    - [Common Motion](#common-motion)
-    - [Jump Motion](#jump-motion)
-  - [Buffer, Window and Tab in VIM](#buffer-window-and-tab-in-vim)
-    - [Window Commands](#window-commands)
-    - [Terminal Window In VIM](#terminal-window-in-vim)
-    - [Tab Page Commands and Operations](#tab-page-commands-and-oprations)
-  - [Editing](#editing)
-- [Markdown(CommonMark)](#markdowncommonmark)
-  - [Paragraph](#paragraph)
-  - [Links and Images](#links-and-images)
-- [In Case I Forget Again](#in-case-i-forget-again)
+- [JUST TAKE IT DOWN](#just-take-it-down)
+  - [Preface](#preface)
+  - [Vim](#vim)
+    - [Scrolling](#scrolling)
+    - [Motion](#motion)
+      - [Common Motion](#common-motion)
+      - [Jump Motion](#jump-motion)
+    - [Buffer, Window and Tab in VIM](#buffer-window-and-tab-in-vim)
+      - [Window Commands](#window-commands)
+      - [Terminal Window In VIM](#terminal-window-in-vim)
+      - [Tab Page Commands and Operations](#tab-page-commands-and-operations)
+    - [Editing](#editing)
+  - [Markdown(CommonMark)](#markdowncommonmark)
+    - [Paragraph](#paragraph)
+    - [Links and Images](#links-and-images)
+  - [In Case I Forget Again](#in-case-i-forget-again)
 
 ## Preface
 
@@ -27,6 +29,19 @@ memory become, and we need to **construct** a system, not merely "remember" all 
 I do have perceived the necessity to just take things down and fathom deeper during this process.
 
 ## Vim
+
+### Scrolling
+
+|Key|Descrition|
+--|--
+|**Ctrl + D**|Scroll `'scroll'` lines down|
+|**Ctrl + U**|Scroll `'scroll'` lines up|
+|**Shift + Up**|PageUp|
+|**Shift + Down**|PageDown|
+|{count} **Ctrl + E**|Scroll {count} lines down|
+|{count} **Ctrl + Y**|Scroll {count} lines up|
+
+_In a common keyboard, **E is near D** and **Y is near U**._
 
 ### Motion
 
@@ -93,6 +108,11 @@ I do have perceived the necessity to just take things down and fathom deeper dur
       |{count}**clo(se)**|Like `:quit` but will fail when there is only one window.|`c-w,c`|
       |{count}**on(ly)**|Leave only the current window or {count} windows open<br>and close all the rest.|`c-w,o`|
 
+      |Key|Description|
+      --|--
+      |**Ctrl-W + H/J/K/L**|Move the **current window** to the given direction.|
+      |**Ctrl-W + h/j/k/l**|Move the **cursor** to the window in the given direction.|
+
    2. Involving **tag** under the cursor
 
       There command rely on **tags file** and make sure you have generated one under the working directory with `ctags -R`.
@@ -123,7 +143,7 @@ Terminal-Job and Terminal-Normal mod
 - In Terminal-Job mod, all the typed keys are sent to the terminal\
   while in Terminal-Normal mod, the contents of the terminal become common string text\
   of a un-modifiable buffer so you can use usual VIM command.
-- Use `C-W,N` in Terminal-Job mod to switch to Terminal-Normal mode.\
+- Use `C-W,n` in Terminal-Job mod to switch to Terminal-Normal mode.\
   And any action that would start insert mode(`i`,`a`,etc.) under Terminal-Normal mode\
   will invoke a switch to Terminal-Job mod.
 - In Terminal-Job mode, you can also use `C-W,:` to enter vim command line.
