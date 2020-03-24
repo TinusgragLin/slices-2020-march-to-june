@@ -7,6 +7,7 @@
     - [Motion](#motion)
       - [Common Motion](#common-motion)
       - [Jump Motion](#jump-motion)
+    - [Change Text](#change-text)
     - [Buffer, Window and Tab in VIM](#buffer-window-and-tab-in-vim)
       - [Window Commands](#window-commands)
       - [Terminal Window In VIM](#terminal-window-in-vim)
@@ -85,6 +86,25 @@ _In a common keyboard, **E is near D** and **Y is near U**._
    |{count}**g,**|To the {count} newer position in change list.|
 
    Use `:changes` to check all the changes made in current window.
+
+### Change Text
+
+|Operation|Description|
+|--|--|
+|{count}**c**{motion}|Delete {motion} text and start insert.|
+|{count}**D**|Delete until the end of the current line and {count}-1 more lines.|
+|{count}**C**|Delete until the end of the current line and {count}-1 more lines, then enter Insert Mode.|
+|{count}**s**|Delete {count} characters and start insert.|
+|{count}**S**|Delete {count} lines and start insert.|
+|{count}**J**|Join {count} lines, remove the indent and insert up to two spaces.|
+|{count}**gJ**|Like **J** but do not delete any space.|
+|{count}**~**|Switch case of {count} characters from the cursor.|
+|**gu**{motion}|Make {motion} text lowercase.|
+|**gU**{motion}|Make {motion} text uppercase.|
+|{count}**guu**|Make {count} lines lowercase from the current line|
+|{count}**gUU**|Make {count} lines uppercase from the current line|
+
+More at `help change.txt`.
 
 ### Buffer, Window and Tab in VIM
 
