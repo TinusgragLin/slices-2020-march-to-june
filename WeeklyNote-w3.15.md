@@ -182,11 +182,12 @@ More at `help terminal`
 |{count}**tabc(lose)(!)**|Close tab page {count},<br>`:tabc 2`:Close the second tag page<br>`:-2tabc`:Close the second previous tab page<br>`:tabc $`:Close the last tab page|
 |{count}**tabo(nly)**|Close all tab pages except {count} one|
 |**tabm(ove) +[N]/-[N]**|Move the current tab page [N] places to the right(+) or left(-)|
+|**tabf(irst)**|To the first tab page.|
+|**tabl(ast)**|To the last tab page.|
 
-|Operation|Description|Shortcut Key|
-|--|--|--|
-|**gt/gT**|Jump to the next/previous tab page|`C-PgDn`/`C-PgUp`|
-
+|Command|Operation|Description|Shortcut Key|
+|--|--|--|--|
+|**tabn(ext)/tabp(revious)**|**gt/gT**|Jump to the next/previous tab page|`C-PgDn`/`C-PgUp`|
 
 ### Editing
 
