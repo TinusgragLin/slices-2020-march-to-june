@@ -8,6 +8,8 @@
       - [Common Motion](#common-motion)
       - [Jump Motion](#jump-motion)
     - [Change Text](#change-text)
+    - [Repeat](#repeat)
+    - [Search](#search)
     - [Buffer, Window and Tab in VIM](#buffer-window-and-tab-in-vim)
       - [Window Commands](#window-commands)
       - [Terminal Window In VIM](#terminal-window-in-vim)
@@ -25,13 +27,15 @@ You know, you will just tell yourself "Come on, of course I can remember this" a
 to forget every detail you should pay attention to.
 
 Although I have this disagreement against `好记性不如烂笔头` as I reckon that the capability of memorizing\
-is actually a result of training and the more we rely on notebooks just to remember things, the worse our \
+is actually a result of trainin g and the more we rely on notebooks just to remember things, the worse our \
 memory become, and we need to **construct** a system, not merely "remember" all these pieces of fragments\
 I do have perceived the necessity to just take things down and fathom deeper during this process.
 
 ## Vim
 
 ### Scrolling
+
+1. Scroll Window Up\&Down
 
 |Key|Descrition|
 --|--
@@ -43,6 +47,25 @@ I do have perceived the necessity to just take things down and fathom deeper dur
 |{count} **Ctrl + Y**|Scroll {count} lines up|
 
 _In a common keyboard, **E is near D** and **Y is near U**._
+
+2. Scroll Relative to Cursor
+
+|Operation|Descrition|
+--|--
+|{count}**z[Enter]**|Let line {count} at the **top** of window and put the cursor at the first non-blank character.|
+|{count}**zt**|Like `z[enter]` but put the cursor at the same column.|
+|{count}**z.**|Let line {count} at the **center** of window and put the cursor at the first non-blank character.|
+|{count}**zz**|Like `z.` but put the cursor at the same column.|
+|{count}**z-**|Let line {count} at the **bottom** of window and put the cursor at the first non-blank character.|
+|{count}**zb**|Like `z-` but put the cursor at the same column.|
+
+3. Synchronous Scrolling
+   - You can `set scrollbind` to windows that you want to scroll synchronously.
+   - The scroll-bind is not a position bind, execute `:syncbind` if you want your\
+     scroll-binding windows to scroll to same position of their respective buffer.
+
+4. Scrolling horizontally
+   - `set nowrap` and check out at `help scroll.txt`-`4. Scrolling horizontally`
 
 ### Motion
 
@@ -68,6 +91,14 @@ _In a common keyboard, **E is near D** and **Y is near U**._
 |{count}**ge**|Backward to the **end** of the word {count} times|
 |{count}**aw, as, ap, a(** _etc._|Select a word(include the blank before the word)<br>,a sentence,a paragraph, a () block, etc.|
 |{count}**iw, is, ip, i(** _etc._|Select a inner word(just the word), a inner sentence,<br>a inner paragraph or inside a () block, etc.|
+
+|Operation|Description|
+|--|--|
+|**%**|Find the next of ()[]{} /\* \*/ or #if,#ifdef,#else,#elif,#endif|
+|{count}**H**|To the {count}-th line from the top of the window.|
+|{count}**L**|To the {count}-th line from the bottom of the window.|
+|**M**|To the middle of the window.|
+
 
 #### Jump Motion
 
@@ -108,6 +139,29 @@ _In a common keyboard, **E is near D** and **Y is near U**._
 
 More at `help change.txt`.
 
+### Repeat
+
+|Operation|Description|
+|--|--|
+|{count}**.**|Repeat last change {count} times|
+
+|Operation|Description|
+|--|--|
+|**q{Reg}**|Record typed characters into register {Reg}(0-9a-zA-Z, uppercase to append).|
+|**q**|Stop current recording process.|
+|{count}**@{Reg}**|Repeat the command or operations in register {Reg} {count} times.|
+|{count}**@@**|Repeat last @{Reg} {count} times.|
+
+### Search
+
+|Operation|Description|
+|--|--|
+|{count}**\***|Search Forward for the {count}-th occurrence of the word nearest to the cursor.|
+|{count}**\#**|Like * but search backwards.|
+
+> All matches for the last used search pattern will be highlighted if you set\
+> the 'hlsearch' option.  This can be suspended with the :noh(lsearch) command.  
+
 ### Buffer, Window and Tab in VIM
 
 > A buffer is the in-memory text of a file.\
@@ -121,11 +175,15 @@ More at `help change.txt`.
 
       | Command|Description|Shortcut Key|
       |:--|:--|--|
-      |**sp(lit)** {file}|if file is given, split the window and edit the file<br>otherwise vim\'ll open the current buffer.|`c-w,s`|
-      |**vs(plit)**|like `:split` but split vertically.|`c-w,v`|
-      |**new** |create a new window to edit a new file.|`c-w,n`|
-      |**vne(w)**|like :new but split vertically.||
+      |**sp(lit)** +{cmd} ++{option} {file}|if file is given, split the window and edit the file<br>otherwise vim\'ll open the current buffer.|`c-w,s`|
+      |**vs(plit)** +{cmd} ++{option}|like `:split` but split vertically.|`c-w,v`|
+      |**new** +{cmd} ++{option} |create a new window to edit a new file.|`c-w,n`|
+      |**vne(w)** +{cmd} ++{option}|like :new but split vertically.||
       |**vert(ical)** {cmd}|Execute {cmd}, but if the command<br>splits a window, it splits vertically.<br>For example, `:vert help window`.||
+	  |**abo(veleft)** {cmd}|Work like `:vert`, but the window will be opened above(when originally splits horizontally)<br>or on the left(when originally splits vertically) of the current window|None|
+	  |**bel(owright)** {cmd}|Work like `:abo`, but the window will be opened below(when originally splits horizontally)<br>or on the right(when originally splits vertically) of the current window|None|
+	  |**to(pright)** {cmd}|Work like `:abo`, but the window will be opened on the top(when originally splits horizontally)<br>or on the left(when originally splits vertically) of the **VIM**|None|
+	  |**bo(tright)** {cmd}|Work like `:abo`, but the window will be opened on the bottom(when originally splits horizontally)<br>or on the right(when originally splits vertically) of the **VIM**|None|
       |{count}**q(uit)**|Quit the {count} window if {count} is given,<br>otherwise quit the current one.|`c-w,q`|
       |{count}**clo(se)**|Like `:quit` but will fail when there is only one window.|`c-w,c`|
       |{count}**on(ly)**|Leave only the current window or {count} windows open<br>and close all the rest.|`c-w,o`|
@@ -134,6 +192,8 @@ More at `help change.txt`.
       --|--
       |**Ctrl-W + H/J/K/L**|Move the **current window** to the given direction.|
       |**Ctrl-W + h/j/k/l**|Move the **cursor** to the window in the given direction.|
+	  |**Ctrl-W + T**|Move to current window to a new tab page.Work only when<br> there are two or more windows in the current tab page.|
+	  |**Ctrl-W + r**|Rotate windows upwards/leftwards.|
 
    2. Involving **tag** under the cursor
 
@@ -141,7 +201,7 @@ More at `help change.txt`.
 
       |Command|Description|Shortcut Key|
       |:--|:--|--|
-      |**sta(g)** [tagname]|Create a window and jump to the tag<br>under the cursor(use shortcut key)<br>or the tag given(use command).|`c-w, ]`|
+      |**sta(g)** [tagname]|Create a window and jump to the tag<br>under the cursor(use shortcut key)\or the tag given(use command).|`c-w, ]`|
       |**pta(g)** [tagname]|Create a _preview window_ and jump to the tag<br>under the cursor(use shortcut key)<br>or the tag given(use command).|`c-w, }`|
 
       More at `help window`-`Tag or file name under the cursor` and `The preview window`
@@ -177,7 +237,7 @@ More at `help terminal`
 
 |Command|Description|
 |--|--|
-|{count}**tabe(dit)**, **tabnew** {file}|Open a new tab page after the current tab page.|
+|{count}**tabe(dit)**, **tabnew** {file} +{cmd} ++{option}|Open a new tab page after the current tab page.|
 |{count}**tab** {cmd}|Execute the {cmd},but when it create a new window, create a new tab instead.|
 |{count}**tabc(lose)(!)**|Close tab page {count},<br>`:tabc 2`:Close the second tag page<br>`:-2tabc`:Close the second previous tab page<br>`:tabc $`:Close the last tab page|
 |{count}**tabo(nly)**|Close all tab pages except {count} one|
@@ -195,6 +255,13 @@ More at `help terminal`
 |--|--|
 |**e(dit)(!)** {file}|Edit or re-edit(when the current file has been modified outside.Add `!`<br>will discard all the changes made to the current buffer) the file.|
 |**fin(d)** {file}|Find {file} in `path` and edit it.|
+
+
+\
+\
+**Note**: Spaces in a {cmd} in **+{cmd}** should be preceded by a backslash \\ .\
+For example: `:tabedit +vert\ help\ window file` will open 'file' in a new tab
+page and then vertically split a window for help about 'window'.
 
 ## Markdown(CommonMark)
 
