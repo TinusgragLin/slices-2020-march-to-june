@@ -50,6 +50,8 @@ _In a common keyboard, **E is near D** and **Y is near U**._
 
 |Operation|Description|
 |--|--|
+|**gj**|To the next **screen line**|
+|**gk**|To the previous **screen line**|
 |**g0**, **g[home]**|To the first character of current **screen line**|
 |**g^**|To the first __non-blank__ character of current **screen line**|
 |**gm**|To the middle of the current **screen line**|
