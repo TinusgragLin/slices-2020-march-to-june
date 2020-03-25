@@ -165,7 +165,7 @@ Terminal-Job and Terminal-Normal mod
 - In Terminal-Job mod, all the typed keys are sent to the terminal\
   while in Terminal-Normal mod, the contents of the terminal become common string text\
   of a un-modifiable buffer so you can use usual VIM command.
-- Use `C-W,n` in Terminal-Job mod to switch to Terminal-Normal mode.\
+- Use `C-W,N` in Terminal-Job mod to switch to Terminal-Normal mode.\
   And any action that would start insert mode(`i`,`a`,etc.) under Terminal-Normal mode\
   will invoke a switch to Terminal-Job mod.
 - In Terminal-Job mode, you can also use `C-W,:` to enter vim command line.
