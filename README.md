@@ -2,5 +2,5 @@
 ======================
 
 - [ ] 03.08
-- [x] [03.15](https://github.com/TinusgragLin/summary/blob/master/WeeklyNote-w3.15.md) : VIM(Motion, Window \& Tab), CommonMark
-- [x] [03.22](https://github.com/TinusgragLin/summary/blob/master/rep-w3.22.md): VIM(motion, scrolling, text-changing, search,repeat),Vimplugin(coc,neomake,nerdtree,ale),Makefile
+- [x] [03.15](https://github.com/TinusgragLin/summary/blob/master/note/Note-b3.15-u3.26-VIM-CommonMark.md) : VIM(Motion, Window \& Tab), CommonMark
+- [x] [03.22](https://github.com/TinusgragLin/summary/blob/master/report/rep-w3.22.md): VIM(motion, scrolling, text-changing, search,repeat),Vimplugin(coc,neomake,nerdtree,ale),Makefile
