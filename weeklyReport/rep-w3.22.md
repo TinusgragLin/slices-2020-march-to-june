@@ -11,7 +11,7 @@
 ## VIM
 
 
-详见[note1](https://github.com/TinusgragLin/summary/blob/master/Note-b3.15-u3.26-VIM-CommonMark.md), [note2](https://github.com/TinusgragLin/summary/blob/master/w3.22.md), commit [fa263ff](https://github.com/TinusgragLin/summary/commit/fa263ff206b1d4074bc3fd21a8891589c160be98) - [4258c37](https://github.com/TinusgragLin/summary/commit/4258c37949d902fdb66c94df85e6387c18c95dce)
+详见[note1](https://github.com/TinusgragLin/summary/blob/master/note/Note-b3.15-u3.26-VIM-CommonMark.md), [note2](https://github.com/TinusgragLin/summary/blob/master/report/w3.22.md), commit [fa263ff](https://github.com/TinusgragLin/summary/commit/fa263ff206b1d4074bc3fd21a8891589c160be98) - [4258c37](https://github.com/TinusgragLin/summary/commit/4258c37949d902fdb66c94df85e6387c18c95dce)
 
 
 ## Makefile
