@@ -14,7 +14,8 @@
 #	echo "Bye, $$bar"
 
 OBJDIR := outputdir
-# function $(addprefix prefix-string,string1 string2 ...)
+# function $(addprefix <prefix-string>,<names...>)
+# 'The argument names is regarded as a series of names, separated by whitespace.'
 OBJS := $(addprefix $(OBJDIR)/,README.md READMEALSO.md)
 
 all:$(OBJS)
