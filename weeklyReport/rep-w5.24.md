@@ -4,9 +4,9 @@
 
 假期里自知水课太长时间了，想要自己补回来吧，自制力又不高，精神不在线，不过好在磨磨蹭蹭自己补完了（甚至还预习了几节）高数和离散。这几天正在B站补物理，配合书上的习题感觉也差不多了，于是又钻进了linux的深坑，打算熟悉一下make, awk, sed, grep这几个工具。
 
-make主要是考虑到以后的工程管理，虽然有GNU的自动化链，cmake, qmake这些工具，但感觉还是需要首先熟悉一下makefile，遂把[GNU make](learningMakefile/GNU-make.pdf)(主要是前五章)的主要内容过了一遍，做了高亮和批注，我这边没有什么称得上工程的，所以实践部分基本上是小大小闹，正琢磨着在github上找几个轻量级的c/c++工程的makefile学习学习。
+make主要是考虑到以后的工程管理，虽然有GNU的自动化链，cmake, qmake这些工具，但感觉还是需要首先熟悉一下makefile，遂把[GNU make](../learningMakefile/GNU-make.pdf)(主要是前五章)的主要内容过了一遍，做了高亮和批注，我这边没有什么称得上工程的，所以实践部分基本上是小大小闹，正琢磨着在github上找几个轻量级的c/c++工程的makefile学习学习。
 
-awk,sed,grep这几个主要是听说名气很大，功能很强，自己又对linux很着迷，于是决定学习，我把重点放在了awk上，找到了那本[awk程序设计语言](learningAwk/The_AWK_Programming_Language_zh_CN.pdf)的中译本，大致看了三章，同样做了高亮批注，实践下来，配合管道和\`command\`对一堆以前已经用python做过转换，但格式不符合标准的B站CC字幕做了处理，但基本上没能发挥awk列处理的优势，希望以后能有用武之地吧。
+awk,sed,grep这几个主要是听说名气很大，功能很强，自己又对linux很着迷，于是决定学习，我把重点放在了awk上，找到了那本[awk程序设计语言](../learningAwk/The_AWK_Programming_Language_zh_CN.pdf)的中译本，大致看了三章，同样做了高亮批注，实践下来，配合管道和\`command\`对一堆以前已经用python做过转换，但格式不符合标准的B站CC字幕做了处理，但基本上没能发挥awk列处理的优势，希望以后能有用武之地吧。
 
 sed和grep我觉得关键在Regex上，于是又复习（预习）了一遍Regex，第一次发现还有BRE,ERE,PCRE这些派别，还有什么look-around，类似于条件匹配，真是意识到系统学习的重要性。
 
