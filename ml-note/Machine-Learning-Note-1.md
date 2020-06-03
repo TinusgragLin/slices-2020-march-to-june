@@ -33,7 +33,7 @@
 
    $H(a_1,a_2,\cdots,a_n)=\vec{w}\cdot \vec{x}+b $ 
 
-   in which case vector $\vec{w}$ is called **weight vector**, which is not so difficult to understand, as $\vec{w}$ stores the contribution(weight) of each attribute of an instance $\vec{x}$.
+   in which case (linear model) vector $\vec{w}$ is called **weight vector**, which is not so difficult to understand, as $\vec{w}$ stores the contribution(weight) to the function output of each attribute of an instance $\vec{x}$.
 
    Or we may came up with a more complicated function like this:
 
@@ -45,8 +45,20 @@
 
    $$ H(\vec{x},\vec{k})\,\,or\,\, H(\vec{x},\vec{w}) $$
 
-3.  Loss Function $L(a_1,a_2,\cdots, a_n)$ 
+3. Loss Function $L$ or  Cost Function $C$
 
    A function which evaluate how well a hypothesis function fits the dataset.  
 
-   Usually we first use the hypothesis function $H$ to label every instance in our dataset then, we evaluate the difference between the real label of one instance and the label predicted by the hypothesis function and somehow sum the difference to get a general deviation between the hypothesis and the reality(or a perfect approximation of "the function" somehow determines a quality of an instance based on a series of attributes).
+   Usually we first use the hypothesis function $H$ to label every instance in our dataset then, we evaluate the difference between the real label of and the label predicted by the hypothesis function for each instance and somehow sum the difference to get a general deviation between the hypothesis and the reality(or a perfect approximation of "the function" somehow determines a quality of an instance based on a series of attributes).  
+
+   
+
+   Here are some loss functions that are commonly used:  
+
+   - Mean Squared Error(MSE)  
+
+     $$ L=\frac{1}{n}\cdot \sum_{k=1}^{n}(H(\vec{x})-Y_k)^2 $$
+
+   - Cross-Entropy Loss(or Log Loss)
+
+     $$ L= $$
