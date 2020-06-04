@@ -46,10 +46,18 @@
    
    As you may have noticed, as we approach a local or the global minimum, the $-\nabla\cdot H$ term approaches $(0,0,\cdots,0)$, in other word, the step we are going to make is becoming smaller and smaller as we approach the minimum. So it will be reasonable if we set a minimum step distance, the whole process comes to a halt when the step we make is smaller than the minimum step distance.  
    
-   **NOTE & SUPPLEMENT:**  
+
+**NOTE & SUPPLEMENT:**  
+
+1. When we want write our hypothesis function as $ H=k_1a_1+k_1a_2+k_2a_1^2+k_2a_2^2+b $ we are actually doing this:  $a_3=a_1^2,a_4=a_2^2$.  
+
+2. Another way we can accelerate the gradient descent process is trying to make the value ranges of all the attributes as uniform as possible by "scaling" some attributes. We can this trick "feature-scaling".
+
+3. Be careful when you are trying to implement gradient descent algorithm, the $H$ in $-\nabla\cdot H$ must be the **old** $H$ where all the **old** parameters($k_1,k_2,\cdots,k_n,b $) remain the same.
+
+4. In practice, for simplicity, we may consider $b$ as $k_0$, and add an extra dimension $a_0$ which equals to 1 to our $\vec{x}$ vector. And define: 
+
+   $\vec{W}=[k_0,k_1,k_2,\cdots,k_n]$  and  $\vec{X}=\begin{bmatrix}a_0\\a_1\\a_2\\\vdots\\a_n\end{bmatrix}$. So now our hypothesis function can be simplified as :  
+
+   $$ H=\vec{W}\cdot \vec{X}=[k_0,k_1,k_2,\cdots,k_n]\cdot\begin{bmatrix}a_0\\a_1\\a_2\\\vdots\\a_n\end{bmatrix}$$
    
-   1.  When we want write our hypothesis function as $ H=k_1a_1+k_1a_2+k_2a_1^2+k_2a_2^2+b $ we are actually doing this:  $a_3=a_1^2,a_4=a_2^2$.  
-   2. Another way we can accelerate the gradient descent process is trying to make the value ranges of all the attributes as uniform as possible by "scaling" some attributes. We can this trick "feature-scaling".
-   3. Be careful when you are trying to implement gradient descent, the $H$ in $-\nabla\cdot H$ must be the **old** $H$ where all the **old** parameters($k_1,k_2,\cdots,k_n,b $) remain the same.
-   
-     
