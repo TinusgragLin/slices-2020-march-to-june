@@ -6,7 +6,7 @@ We are going to enter the domain of classification problem. Suppose you have a b
 
 But a function that only outputs 0 and 1 is unfriendly for mathematical reasons, we need a continuous function that outputs a value ranging from 0 to 1. And if the value is bigger than 0.5, we absolutely wound believe that the instance is relatively more likely to have that certain quality while an output which is smaller than 0.5 wound indicate that the instance may not have that quality. In this way, we may consider the output as the probability of the instance to have that quality based on all the given attributes this instance has. 
 
-One of this kind of function is defined as  $ g(z)=\frac{1}{1+e^{-z}} $  which have a shape like this: 
+One of this kind of function is defined as  $g(z)=\frac{1}{1+e^{-z}}$  which have a shape like this: 
 
  ![sigmoid-function](../pic/sigmoid-function.png)
 
