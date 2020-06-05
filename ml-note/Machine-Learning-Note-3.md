@@ -10,7 +10,9 @@ One of this kind of function is defined as  $g(z)=\frac{1}{1+e^{-z}}$  which hav
 
  ![sigmoid-function](../pic/sigmoid-function.png)
 
-Since we need a hypothesis function, we need to associate $g(z)$ with all the attributes of an instance, we can simply substitute $z$ with $\vec{W}\cdot \vec{X}$. 
+Since we need a hypothesis function, we need to associate $g(z)$ with all the attributes of an instance, we can simply substitute $z$ with $\vec{W}\cdot \vec{X}$. So we have our hypothesis function: 
+
+$$ H(\vec{W},\vec{X})=\frac{1}{1+e^{\vec{W}\cdot \vec{X}}} $$
 
 Now what should be our loss function? Well, we have to first how to evaluate how well $H(\vec{x})$ predicts for one instance in our data, since the output of our hypothesis function is the probability for that instance to have a certain quality and if that instance do have that quality then, of course the closer $H$ is to 1, the better our $H$ is. But if that instance does not have that quality, the closer $H$ is to 0, the better $H$ is.
 
@@ -26,4 +28,18 @@ And sum up all the individual loss to get the overall loss:
 
  $$ L=\sum_{i=1}^{n} -y_i ln(1-H(\vec{x_i}))-(1-y_i)ln(H(\vec{x_i}))$$
 
-So finally, what we are going to do is just try to minimize our loss function.
+So finally, what we are going to do is just try to minimize our loss function. 
+
+You can simply use normal gradient descent to estimate all the parameters. 
+
+$$ (k_0^{\prime},k_1^{\prime},\cdots,k_n^{\prime})=(k_0,k_1,\cdots,k_n)+\alpha(-\vec{\nabla}\cdot H) $$
+
+
+
+- Some articles that might be helpful or dive more deeply :
+
+  [Stanford CS109 L25 Note[PDF]](http://web.stanford.edu/class/cs109/lectureNotes/LN25_logistic_regression.pdf)
+
+  [machinelearningmastery-LR](https://machinelearningmastery.com/logistic-regression-for-machine-learning/)
+
+  [Interpretable ML Book - LR](https://christophm.github.io/interpretable-ml-book/logistic.html)

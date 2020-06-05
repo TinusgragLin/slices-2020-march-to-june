@@ -42,7 +42,7 @@
 
    $$ (k_{1}^{\prime},k_{2}^{\prime},\cdots,k_{n}^{\prime},b^{\prime})=(k_1,k_2,\cdots,k_n,b)+\alpha[-\vec{\nabla}\cdot H] $$
 
-   where $\vec{\nabla}=(\frac{\part}{\part k_1},\frac{\part}{\part k_2},\cdots,\frac{\part}{\part k_n},\frac{\part}{\part b})$, and $\alpha$ is the so called the "learning rate".If we have only three variables $k_1,k_2,b$, it is the length of the xOy projection of the trajectory we "walked" in the plane.
+   where $\vec{\nabla}=(\frac{\part}{\part k_1},\frac{\part}{\part k_2},\cdots,\frac{\part}{\part k_n},\frac{\part}{\part b})$, and $\alpha$ is the so called the "learning rate". If we have only three variables $k_1,k_2,b$, it is the length of the xOy projection of the trajectory we "walked" in the plane.
    
    As you may have noticed, as we approach a local or the global minimum, the $-\nabla\cdot H$ term approaches $(0,0,\cdots,0)$, in other word, the step we are going to make is becoming smaller and smaller as we approach the minimum. So it will be reasonable if we set a minimum step distance, the whole process comes to a halt when the step we make is smaller than the minimum step distance.  
    
