@@ -62,3 +62,5 @@
    - Cross-Entropy Loss(or Log Loss)
 
      $$ L= $$
+   
+4. Bias-Variance Blance  

@@ -32,7 +32,7 @@
 
    Since our loss function is a function with $n+1$ variables($k_1,k_2,\cdots,k_n,b$), to minimize this function is to find a local or global minimum of $Z=L(\vec{w},b)$. Now we can use our mathematical knowledge.  
 
-   Basically, to do this, we need to take the partial derivative of $Z$ to each variable and try to make every equation equals to zero. So we will have $n+1$ equations with $$ n+1 $$ unknowns and by using some linear algebra knowledge, we can then determine all the parameters in which case will make our loss function goes down to a minimum. And this whole process is called **Ordinary Least Square Estimate**.  
+   Basically, to do this, we need to take the partial derivative of $Z$ to each variable and try to make every equation equals to zero. So we will have $n+1$ equations with $$ n+1 $$ unknowns and by using some linear algebra knowledge, we can then determine all the parameters in which case will make our loss function goes down to a minimum. And this whole process is called **Ordinary Least Square Estimate**. More detail at the supplement down below. 
 
    Or we can adopt another way called **Gradient Descent** which has something to do with the **gradient vector** of a scalar function. In short, the gradient vector of a scalar function at a certain point is a **direction vector** pointing at the direction in which the value of the function **increases** most rapidly.  
 
@@ -59,5 +59,28 @@
 
    $\vec{W}=[k_0,k_1,k_2,\cdots,k_n]$  and  $\vec{X}=\begin{bmatrix}a_0\\a_1\\a_2\\\vdots\\a_n\end{bmatrix}$. So now our hypothesis function can be simplified as :  
 
-   $$ H=\vec{W}\cdot \vec{X}=[k_0,k_1,k_2,\cdots,k_n]\cdot\begin{bmatrix}a_0\\a_1\\a_2\\\vdots\\a_n\end{bmatrix}$$
+   $$ H=\vec{W}\cdot \vec{X}=[k_0,k_1,k_2,\cdots,k_n]\cdot\begin{bmatrix}a_0\\a_1\\a_2\\\vdots\\a_n\end{bmatrix}$$  
    
+   Accordingly, our dataset $D$ is now: 
+   
+   $$ D=[\vec{X_0},\vec{X_1},\cdots,\vec{X_m}] $$
+
+5. Calculate Gradient in Matrix Notation and Use It
+
+   In practice, we may rewrite everything in matrix notation: 
+
+   $$ H_M=\vec{W}\cdot D $$
+
+   $$ L=(H_M-Y)(H_M-Y)^{T} $$  
+
+   where $D_{(n+1)\times m}=[\vec{X_0},\vec{X_1},\cdots,\vec{X_m}] $ is our modified dataset, $\vec{W}_{1\times(n+1)}=[k_0,k_1,k_2,\cdots,k_n]$, $\vec{Y}_{1\times m}$ is our label matrix. we get the gradient of $L$: 
+
+   $$ (\nabla\cdot L)_{(n+1)\times 1}=-2D\cdot (\vec{W}\cdot D-Y)^{T} $$
+
+   If you prefer "closed-form solution", then you make this 0 and solve $\vec{W}$: 
+   
+   $$\nabla\cdot L=-2D\cdot(D^T\cdot\vec{W}^T-Y^T)=0$$  
+   
+   If you prefer gradient descent, then you update all your parameters at the same time using matrix operation: 
+   
+   $$ \vec{W}_{new}=\vec{W}_{old}-\alpha(\nabla\cdot L)^T=\vec{W}_{old}+2\alpha(\vec{W}_{old}\cdot D-Y)\cdot D^T $$
