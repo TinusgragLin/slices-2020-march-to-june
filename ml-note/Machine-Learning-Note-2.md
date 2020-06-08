@@ -51,7 +51,7 @@
 
 1. When we want write our hypothesis function as $ H=k_1a_1+k_1a_2+k_2a_1^2+k_2a_2^2+b $ we are actually doing this:  $a_3=a_1^2,a_4=a_2^2$.  
 
-2. Another way we can accelerate the gradient descent process is trying to make the value ranges of all the attributes as uniform as possible by "scaling" some attributes. We can this trick "feature-scaling".
+2. Another way we can accelerate the gradient descent process is trying to make the value ranges of all the attributes as uniform as possible by "scaling" some attributes. We call this trick "feature-scaling".
 
 3. Be careful when you are trying to implement gradient descent algorithm, the $H$ in $-\nabla\cdot H$ must be the **old** $H$ where all the **old** parameters($k_1,k_2,\cdots,k_n,b $) remain the same.
 
@@ -63,7 +63,7 @@
    
    Accordingly, our dataset $D$ is now: 
    
-   $$ D=[\vec{X_0},\vec{X_1},\cdots,\vec{X_m}] $$
+   $$ D=[\vec{X_1},\vec{X_2},\cdots,\vec{X_m}] $$
 
 5. Calculate Gradient in Matrix Notation and Use It
 
@@ -73,14 +73,22 @@
 
    $$ L=(H_M-Y)(H_M-Y)^{T} $$  
 
-   where $D_{(n+1)\times m}=[\vec{X_0},\vec{X_1},\cdots,\vec{X_m}] $ is our modified dataset, $\vec{W}_{1\times(n+1)}=[k_0,k_1,k_2,\cdots,k_n]$, $\vec{Y}_{1\times m}$ is our label matrix. we get the gradient of $L$: 
+   where $D_{(n+1)\times m}=[\vec{X_1},\vec{X_2},\cdots,\vec{X_m}] $ is our modified dataset(or designed matrix), $\vec{W}_{1\times(n+1)}=[k_0,k_1,k_2,\cdots,k_n]$, $\vec{Y}_{1\times m}$ is our label matrix. We can then get the gradient of $L$: 
 
-   $$ (\nabla\cdot L)_{(n+1)\times 1}=-2D\cdot (\vec{W}\cdot D-Y)^{T} $$
+   $$ (\nabla\cdot L)_{(n+1)\times 1}=2D\cdot (\vec{W}\cdot D-Y)^{T} $$
 
    If you prefer "closed-form solution", then you make this 0 and solve $\vec{W}$: 
    
-   $$\nabla\cdot L=-2D\cdot(D^T\cdot\vec{W}^T-Y^T)=0$$  
+   $$\nabla\cdot L=2D\cdot(D^T\cdot\vec{W}^T-Y^T)=0$$  
+   
+   $$ \vec{W}^T=(D\cdot D^T)^{-1}D\cdot Y^T $$
    
    If you prefer gradient descent, then you update all your parameters at the same time using matrix operation: 
    
-   $$ \vec{W}_{new}=\vec{W}_{old}-\alpha(\nabla\cdot L)^T=\vec{W}_{old}+2\alpha(\vec{W}_{old}\cdot D-Y)\cdot D^T $$
+   $$ \vec{W}_{new}=\vec{W}_{old}-\alpha(\nabla\cdot L)^T=\vec{W}_{old}-2\alpha(\vec{W}_{old}\cdot D-Y)\cdot D^T $$
+
+6. Stochastic Gradient Descent(SGD)  & Mini-batch Gradient Descent
+
+     
+
+7. Local Weighted Regression  

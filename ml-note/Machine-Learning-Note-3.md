@@ -12,7 +12,7 @@ One of this kind of function is defined as  $g(z)=\frac{1}{1+e^{-z}}$  which hav
 
 Since we need a hypothesis function, we need to associate $g(z)$ with all the attributes of an instance, we can simply substitute $z$ with $\vec{W}\cdot \vec{X}$. So we have our hypothesis function: 
 
-$$ H(\vec{W},\vec{X})=\frac{1}{1+e^{\vec{W}\cdot \vec{X}}} $$
+$$ H(\vec{W},\vec{X})=\frac{1}{1+e^{-\vec{W}\cdot \vec{X}}} $$
 
 Now what should be our loss function? Well, we have to first how to evaluate how well $H(\vec{x})$ predicts for one instance in our data, since the output of our hypothesis function is the probability for that instance to have a certain quality and if that instance do have that quality then, of course the closer $H$ is to 1, the better our $H$ is. But if that instance does not have that quality, the closer $H$ is to 0, the better $H$ is.
 
@@ -34,7 +34,9 @@ You can simply use normal gradient descent to estimate all the parameters.
 
 $$ (k_0^{\prime},k_1^{\prime},\cdots,k_n^{\prime})=(k_0,k_1,\cdots,k_n)+\alpha(-\vec{\nabla}\cdot H) $$
 
+- Newton's Method  
 
+  
 
 - Some articles that might be helpful or dive more deeply :
 
