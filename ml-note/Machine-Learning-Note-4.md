@@ -43,7 +43,7 @@ Other popular distance in $n$-dimensional space include:
 
     ![knn-problems-number-takes-over](knn-problems-number-takes-over.png)
 
-   Well, you can easily tell that the instance is more likely to be an circle than a square. But the KNN algorithm thinks otherwise because it had taken the instance's 3 nearest neighbors and found 2 of them are square! So the algorithm wthenould think x as an square even though the instance is much closer to the only circle than to the two squares. 
+   Well, you can easily tell that the instance is more likely to be an circle than a square. But the KNN algorithm thinks otherwise because it had taken the instance's 3 nearest neighbors and found 2 of them are square! So the algorithm would think x as an square even though the instance is much closer to the only circle than to the two squares. 
 
    One way to avoid this is to use **Weighted-kNN**. 
 

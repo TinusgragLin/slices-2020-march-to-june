@@ -65,7 +65,7 @@
    
    $$ D=[\vec{X_1},\vec{X_2},\cdots,\vec{X_m}] $$
 
-5. Calculate Gradient in Matrix Notation and Use It
+5. Calculate Gradient in Matrix Notation and Use Matrix Opration
 
    In practice, we may rewrite everything in matrix notation: 
 
@@ -87,8 +87,46 @@
    
    $$ \vec{W}_{new}=\vec{W}_{old}-\alpha(\nabla\cdot L)^T=\vec{W}_{old}-2\alpha(\vec{W}_{old}\cdot D-Y)\cdot D^T $$
 
-6. Stochastic Gradient Descent(SGD)  & Mini-batch Gradient Descent
+6. **Stochastic Gradient Descent(SGD)  & Mini-batch Gradient Descent**  
 
-     
+   There are alternatives to batch gradient descent which need to take the derivative of the overall loss, stochastic gradient descent uses the gradient of the loss for just one instance in dataset while mini-batch gradient descent, which is often used in ANN, uses the gradient of the loss of just a part of training instances to update the parameters. 
+
+   So in SGD, instead of taking the derivative of $ L=\sum_{i=1}^{n}(y_i-H(\vec{W},\vec{x_i}))^2 $, we just take the derivative of $L_i=(y_i-H(\vec{W},\vec{x_i}))^2$, which is: 
+
+   $$ \frac{\part L_i}{\part k_j}=2a_k^{(i)}(H(W,\vec{x_i})-y_i) $$
+
+   or more generally in matrix notation: 
+
+   $$(\nabla L_i)_{(n+1)\times1}=2\vec{X_i}(\vec{W}\cdot \vec{X_i}-y_i)$$
+
+   So you select the $i$-th instance in your dataset and update your parameters by: 
+
+   $$ \vec{W}_{new}=\vec{W}_{old}-2\alpha \vec{X_i}^T(\vec{W}_{old}\cdot \vec{X_i}-y_i)$$
 
 7. Local Weighted Regression  
+
+   While the linear regression tries to find a function to fit the entire training set, there is  another regression algorithm called Locally Weighted Regression which focus **mainly** the part of the dataset that is relatively **"close"** to the query instance. 
+
+   In other words, this algorithm does not try to find a set of parameters that minimizes the loss function so that you can predict a certain quality for a new instance with a parameterized function. Instead, every time a new query instance comes,  it just look around and mainly focus on the "vicinity" of the query instance in the dataset, and fit a model that is good enough in the vicinity of the query instance, then make a prediction according to the model. 
+
+   So basically what we are going to do is trying to use a function to down-weight the instances that are "far  away" from the query instance, so the function must decrease when the "distance" between two instance increases. 
+
+   The way you define "distance" varies from one to another, we mostly often uses Euclidean Distance. 
+
+   One weight function commonly used is Gaussian function: 
+
+   $$  K_{Gauss}(\vec{a},\vec{b})=e^{-\frac{||\vec{a}-\vec{b}||^2}{2\sigma^2}}  $$  
+
+   So instead of minimizing $ L=\sum_{i=1}^{n}(y_i-H(\vec{W},\vec{x_i}))^2 $, we now want to minimize: 
+
+   $$  L=\sum_{i=1}^{n}w(\vec{x}_q,\vec{x}_i)\cdot(y_i-H(\vec{W},\vec{x_i}))^2  $$  
+
+   where $w(\vec{a},\vec{b})$ is our weight function. 
+
+8. Details about Using Maximum Likelihood Estimate to Derive Loss Function  
+
+   Assume the function the really determined the quality of one instance is : 
+   
+   $$ F(\vec{x})=\vec{W}\cdot\vec{X}+\gamma $$
+   
+    
