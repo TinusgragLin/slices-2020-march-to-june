@@ -36,7 +36,13 @@ $$ (k_0^{\prime},k_1^{\prime},\cdots,k_n^{\prime})=(k_0,k_1,\cdots,k_n)+\alpha(-
 
 - Newton's Method  
 
+  What is the Newton's method? Well, it is originally a method to estimate the zero points of a function. It has been widely used in finding the minimum or maximum of a function by finding the zero point of the first derivative of that function. 
+
   
+
+  
+
+  <img src="/home/lin/GitRepo/summary/ml-note/newtons-method-iterative-process.gif" alt="newtons-method-iterative-process" style="zoom: 67%;" />
 
 - Some articles that might be helpful or dive more deeply :
 

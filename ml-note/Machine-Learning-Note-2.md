@@ -14,19 +14,19 @@
 
    according to **Ordinary Least Squares Estimate**, we need  to minimize:  
 
-   $$ \sum_{i=1}^{n}(y_i-H(\vec{w},b,\vec{x_i}))^2 $$  
+   $$ \sum_{i=1}^{m}(y_i-H(\vec{w},b,\vec{x_i}))^2 $$  
 
    according to **Maximum Likelihood Estimate**(Gaussian Distribution), we need to maximize:  
   
-   $$ F_{likelihood}=-\frac{1}{2\sigma^2}\sum_{i=1}^{n} (y_i-H(\vec{w},b,\vec{x_i}))^2-n\ln \sigma\sqrt{2\pi}$$  
+   $$ F_{likelihood}=-\frac{1}{2\sigma^2}\sum_{i=1}^{m} (y_i-H(\vec{w},b,\vec{x_i}))^2-n\ln \sigma\sqrt{2\pi}$$  
   
    Since $\sigma$ and $n$ is constant, to maximize $F_{likelihood}$ means to minimize: 
   
-   $$ \sum_{i=1}^{n} (y_i - H(\vec{w},b,\vec{x_i}))^2 $$
+   $$ \sum_{i=1}^{m} (y_i - H(\vec{w},b,\vec{x_i}))^2 $$
   
    Therefore, we can reasonably define our loss function to be:  
   
-   $$ L=\sum_{i=1}^{n}(y_i-H(\vec{w},b,\vec{x_i}))^2 $$
+   $$ L=\sum_{i=1}^{m}(y_i-H(\vec{w},b,\vec{x_i}))^2 $$
   
 3. Minimize Our Loss Function  
 
@@ -73,11 +73,11 @@
 
    $$ L=(H_M-Y)(H_M-Y)^{T} $$  
 
-   where $D_{(n+1)\times m}=[\vec{X_1},\vec{X_2},\cdots,\vec{X_m}] $ is our modified dataset(or designed matrix), $\vec{W}_{1\times(n+1)}=[k_0,k_1,k_2,\cdots,k_n]$, $\vec{Y}_{1\times m}$ is our label matrix. We can then get the gradient of $L$: 
+   where $D_{(n+1)\times m}=[\vec{X_1},\vec{X_2},\cdots,\vec{X_m}] $ is our modified dataset(or designed matrix), $\vec{W}_{1\times(n+1)}=[k_0,k_1,k_2,\cdots,k_n]$, $\vec{Y}_{1\times m}$ is our label matrix. We can then get the gradient of $L$ : 
 
-   $$ (\nabla\cdot L)_{(n+1)\times 1}=2D\cdot (\vec{W}\cdot D-Y)^{T} $$
+   $$(\nabla\cdot L)_{(n+1)\times 1}=\frac{\part L}{\part \vec{W}}=2D\cdot (\vec{W}\cdot D-Y)^{T} $$
 
-   If you prefer "closed-form solution", then you make this 0 and solve $\vec{W}$: 
+   If you prefer "closed-form solution" or "normal equation", then you make this 0 and solve $\vec{W}$: 
    
    $$\nabla\cdot L=2D\cdot(D^T\cdot\vec{W}^T-Y^T)=0$$  
    
@@ -89,9 +89,9 @@
 
 6. **Stochastic Gradient Descent(SGD)  & Mini-batch Gradient Descent**  
 
-   There are alternatives to batch gradient descent which need to take the derivative of the overall loss, stochastic gradient descent uses the gradient of the loss for just one instance in dataset while mini-batch gradient descent, which is often used in ANN, uses the gradient of the loss of just a part of training instances to update the parameters. 
+   There are alternatives to batch gradient descent. While batch gradient descent need to take the derivative of the overall loss, stochastic gradient descent uses the gradient of the loss for just one instance in dataset while mini-batch gradient descent, which is often used in ANN, uses the gradient of the loss of just a part of training instances to update the parameters. 
 
-   So in SGD, instead of taking the derivative of $ L=\sum_{i=1}^{n}(y_i-H(\vec{W},\vec{x_i}))^2 $, we just take the derivative of $L_i=(y_i-H(\vec{W},\vec{x_i}))^2$, which is: 
+   So in **Stochastic Gradient Descent**, instead of taking the derivative of $ L=\sum_{i=1}^{m}(y_i-H(\vec{W},\vec{x_i}))^2 $, we just take the derivative of $L_i=(y_i-H(\vec{W},\vec{x_i}))^2$, which is: 
 
    $$ \frac{\part L_i}{\part k_j}=2a_k^{(i)}(H(W,\vec{x_i})-y_i) $$
 
@@ -101,8 +101,70 @@
 
    So you select the $i$-th instance in your dataset and update your parameters by: 
 
-   $$ \vec{W}_{new}=\vec{W}_{old}-2\alpha \vec{X_i}^T(\vec{W}_{old}\cdot \vec{X_i}-y_i)$$
+   $$ \vec{W}_{new}=\vec{W}_{old}-2\alpha \vec{X_i}^T(\vec{W}_{old}\cdot \vec{X_i}-y_i)$$  
 
+   But somehow, when people are talking about SGD in ANN, they are actually talking about mini-batch gradient descent.  
+
+   Basically, in **Mini-batch Gradient Descent**, you first divides your dataset to many *batches* so that each batch have the same number(called "batch size", usually denoted as $b$) of training examples that are **randomly** picked out from the dataset except for the last batch, which might have a smaller number of training examples.  
+
+   In practice, this step might be done by first shuffle the whole dataset and then divide the shuffled dataset to $m|b$ batches, and give the rest $(m-m|b)$ training examples(if any) to the last batch. 
+
+   For each iteration, you update your parameters $W$ to minimize the loss function for just one batch instead of the whole dataset. That is, using the gradient of the loss function for just one batch  to update our parameters $W$. 
+
+   Every time this process scans through all the batches, we call it one epoch. In other words, the algorithm scans through the whole dataset once in one epoch. 
+
+   Now, for each iteration, your loss function becomes: 
+
+   $$ L_{batch[k]}=\sum_{i=1+(k-1)b}^{kb}(H(\vec{W},\vec{X}_{i})-y_{i})^2 $$
+
+   Or you can store all the $X$ in $k$-th batch to $(B_k)_{(n+1)\times b}$ and all the $y$ to $(Y_{B_k})_{1\times b}$. Then the equation above can be expressed in matrix notation: 
+
+   $$L_{batch[k]}=(W\cdot B_k-Y_{B_k})(W\cdot B_k-Y_{B_k})^T$$
+
+   So the updating equation would be: 
+
+   $$ \vec{W}_{new}=\vec{W}_{old}-\alpha(\nabla\cdot L_{batch[k]})^T=\vec{W}_{old}-2\alpha(\vec{W}_{old}\cdot B_k-Y_{B_k})\cdot {B_k}^T $$  
+
+8. Details about Using **Maximum Likelihood Estimate** to Derive Loss Function(which I still cannot fully comprehend. :cry: ​)  
+
+   First assume that the function the really determined a certain quality of one instance is : 
+
+   $$ y_i=\vec{W}\cdot\vec{X}_i+\gamma_i $$
+
+   where $\gamma_i$ is the error term for one specific instance that takes **un-modeled effects and random nosies** into account.  
+
+   Then, according to **central limit theorem**, it turns out that the error term is very likely distributed as standard normal distribution : 
+
+   $$ \gamma \sim \mathcal{N}(0,\sigma^2)$$
+
+   that would means the probability density function of $\gamma$ is: 
+
+   $P(\gamma)=\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(\gamma-0)^2}{2\sigma^2})$  
+
+   Then we make a assumption that all these error terms are **independently and identically distributed** which means these errors are  identically distributed and are independent from each other. (this would probably indicate that all the random variable $y_i$ are also IID.)  
+
+   And all these above implies that (here $P((y_i|\vec{X}_i)_{W})$ means the distribution of $y_i$ given $\vec{X}_i$ with parameters $W$): 
+
+   $$P((y_i|\vec{X}_i)_{W})=\frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(y_i-W\cdot \vec{X}_i)^2}{2\sigma^2})$$
+   
+   i.e.
+   
+   $$ (y_i|\vec{X}_i)_{W} \sim \mathcal{N}(W\cdot\vec{X},\sigma^2) $$
+   
+   which means that the random variable $y_i$ is distributed as Gaussian distribution with the mean being $W\cdot \vec{X}$ and the variance being $\sigma^2$. 
+   
+   Now that we know that for all $y_i$, $y_i \sim \mathcal{N}(W\cdot\vec{X},\sigma^2)$ and the random variables $y_i$ are IID, it is when we should use **Maximum Likelihood Estimation** to estimate the parameters $W\cdot \vec{X}$ so that the random variables $y_i$ are distributed exactly the way they are.  
+   
+   So, as the first step of MLE, the joint probability for all $y_i$ or likelihood function of $y$ would be:  
+   
+   $$\begin{align}L(W)&=\Pi_{i=1}^{m}P((y_i|\vec{X}_i)_{W})\\&=\Pi_{i=1}^{m} \frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(y_i-W\cdot \vec{X}_i)^2}{2\sigma^2})\end{align}$$
+   
+   Then, the log likelihood function would be: 
+   
+   $$\begin{align}LL(W)&=log[L(W)]\\&=\sum_{i=1}^{m}log\frac{1}{\sqrt{2\pi}\sigma} \exp(-\frac{(y_i-W\cdot  \vec{X}_i)^2}{2\sigma^2})\\&=\sum_{i=1}^{m}[-log (\sqrt{2\pi}\sigma)-\frac{(y_i-W\cdot  \vec{X}_i)^2}{2\sigma^2}]\end{align}$$
+   
+   And the last step is just maximizing the log likelihood, which is the same as minimizing the $\sum_{i=1}^{m}(y_i-W\cdot\vec{X})^2$ term. 
+   
 7. Local Weighted Regression  
 
    While the linear regression tries to find a function to fit the entire training set, there is  another regression algorithm called Locally Weighted Regression which focus **mainly** the part of the dataset that is relatively **"close"** to the query instance. 
@@ -123,10 +185,19 @@
 
    where $w(\vec{a},\vec{b})$ is our weight function. 
 
-8. Details about Using Maximum Likelihood Estimate to Derive Loss Function  
+9. Some **Optimal Methods** when Using Gradient Descent  
 
-   Assume the function the really determined the quality of one instance is : 
-   
-   $$ F(\vec{x})=\vec{W}\cdot\vec{X}+\gamma $$
-   
-    
+   - Momentum  (to address the ravine oscillation issue)
+
+     - Original Momentum  
+
+     - Nesterov's Momentum(Nesterov's Accelerated Gradient, GAD)
+     
+   - **Adaptive Learning Rate (for different parameters)**
+      - Adaptive Gradient(adagrad) , Adadelta , RMSprop ......
+
+   - Composite  
+
+     - Adaptive Moment Estimation(Adam)     
+
+   more at [An overview of gradient descent optimization algorithms](https://ruder.io/optimizing-gradient-descent/index.html)
