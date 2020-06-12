@@ -48,7 +48,7 @@ $$ (k_0^{\prime},k_1^{\prime},\cdots,k_n^{\prime})=(k_0,k_1,\cdots,k_n)+\alpha(-
 
      $$y_i\sim B(H(W,\vec{X}_i))$$  
      
-  3. All the random variable $y_i$ are IID. 
+  3. All the random variables $y_i$ are IID. 
 
   the distribution mass function of $y_i$ would be: 
 
@@ -60,13 +60,13 @@ $$ (k_0^{\prime},k_1^{\prime},\cdots,k_n^{\prime})=(k_0,k_1,\cdots,k_n)+\alpha(-
 
   Again, the log likelihood: 
 
-  $$\begin{align}LL(W)&=\sum_{i=1}^{m}log[(H(\vec{X}_i))^{y_i}(1-H(\vec{X}_i))^{1-y_i}]\\&=\sum_{i=1}^{m}y_i log[H(\vec{X}_i)]+(1-y_i)log[1-H(\vec{X}_i)]\end{align}$$   
+  $$\begin{align}LL(W)=log[L(W)]&=\sum_{i=1}^{m}log[(H(\vec{X}_i))^{y_i}(1-H(\vec{X}_i))^{1-y_i}]\\&=\sum_{i=1}^{m}y_i log[H(\vec{X}_i)]+(1-y_i)log[1-H(\vec{X}_i)]\end{align}$$   
 
   Finally, we just need to maximize the log likelihood to estimate parameters $W$ in which case you can use gradient ascent or Newton's method.  
 
 - Newton's Method  
 
-  What is the Newton's method? Well, it is originally a method to estimate the zero points of a function. It has been widely used in finding the minimum or maximum of a function by finding the zero point of the first derivative of that function. 
+  What is the Newton's method? Well, it is originally a method to estimate the zero points of a function. It has been widely used in finding the minimum or maximum of a function by finding the zero point of the first derivative of that function.  
 
   
 
