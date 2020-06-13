@@ -196,7 +196,7 @@
    - **Adaptive Learning Rate (for different parameters)**
       - Adaptive Gradient(adagrad) , Adadelta , RMSprop ......
 
-   - Composite  
+   - Composite(combining momentum trick and adaptive learning rate trick)  
 
      - Adaptive Moment Estimation(Adam)     
 

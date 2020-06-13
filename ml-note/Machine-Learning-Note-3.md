@@ -68,11 +68,33 @@ $$ (k_0^{\prime},k_1^{\prime},\cdots,k_n^{\prime})=(k_0,k_1,\cdots,k_n)+\alpha(-
 
   What is the Newton's method? Well, it is originally a method to estimate the zero points of a function. It has been widely used in finding the minimum or maximum of a function by finding the zero point of the first derivative of that function.  
 
-  
+  Generally, given an $n$-ary function $f(\vec{X}):\R^n\rightarrow \R$ which, we assume, is twice differentiable, we now seek to solve the optimization problem: 
 
-  
+  $$min\, f(\vec{X})$$  
+
+  Say we are now at $\vec{X_k}$, then the *second-order Taylor expansion* of $f(\vec{X})$ in the **vicinity** of $\vec{X}_k$ would be: 
+
+  $$f(\vec{X}_k)+[\nabla_{\vec{X}} f(\vec{X}_k)]^T(\vec{X}-\vec{X}_k)+\frac{1}{2!}(\vec{X}-\vec{X}_k)^T H_{f}(\vec{X}_k)(\vec{X}-\vec{X}_k)\approx f(\vec{X})\tag{1}$$
+
+  where $H_f{\vec{X_k}}$ is the Hessian matrix of $f$ at $\vec{X_k}$. 
+
+  We know that the closer $\vec{X}$ is to $\vec{X_k}$, the more accurate this approximation would be.  
+
+  Let's first rewrite our approximation function with now $g(\vec{X_k})$ denoting $\nabla_{\vec{X}} f(\vec{X}_k)$ :
+
+  $$f_{Approxi}(\vec{X})=f(\vec{X}_k)+g(\vec{X}_k)^T(\vec{X}-\vec{X}_k)+\frac12 (\vec{X}-\vec{X}_k)^T H_{f}(\vec{X}_k)(\vec{X}-\vec{X}_k)\tag{2}$$
+
+  Since $f_{Approxi}$ is an approximation of $f$, it is reasonable to think that the minimum point of $f_{Approxi}$ could be in some way close to the minimum point of $f$. But, remember, $f_{Approxi}$ is just the approximation of $f$ at **the vicinity** of $\vec{X_K}$, so if the minimum point of $f$ is very close to $\vec{X_k}$, then of course its approximation at $\vec{X_k}$ would also have a minimum point which is very close to the minimum point of $f$. But what if $\vec{X_k}$ is not that close to the minimum point of $f$?
+
+  Well, say your function $f$ has an minimum point $\vec{P}$,  it has been proven that if you jump to the minimum point of a approximation function $f_{Approxi}$ of $f$ at a certain point which is within a certain neighboring range of $\vec{P}$, you are actually approaching  $\vec{P}$, the real minimum point of $f$.  
+
+  So, if you do this iteratively, you would end up getting very very close to the minimum point of $f$.
+
+  This is then, Newton's method: 
 
   <img src="/home/lin/GitRepo/summary/ml-note/newtons-method-iterative-process.gif" alt="newtons-method-iterative-process" style="zoom: 67%;" />
+
+  So, going back to our equation $(2)$ 
 
 - Some articles that might be helpful or dive more deeply :
 
