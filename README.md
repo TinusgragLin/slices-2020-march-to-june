@@ -6,3 +6,4 @@
 - [x] [03.22](https://github.com/TinusgragLin/summary/blob/master/weeklyReport/rep-w3.22.md): VIM(motion, scrolling, text-changing, search,repeat),Vimplugin(coc,neomake,nerdtree,ale),Makefile
 - [x] [03.29](https://github.com/TinusgragLin/summary/blob/master/weeklyReport/rep-w3.29.md): makefile(a few), basic ANN implement.
 - [x] [05.24](weeklyReport/rep-w5.24.md):makefile, awk, sed, shell command
+- [x] [05.30-6.13](./weeklyReport/rep-w5.30w6.07.md) : cs229-lec1~5-notes(basic concept, linear regression, local weighted regression, logistic regression, knn, weighted knn, gradient methods, newton's method, derivations using MLE)
