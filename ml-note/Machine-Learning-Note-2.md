@@ -103,7 +103,7 @@
 
    $$ \vec{W}_{new}=\vec{W}_{old}-2\alpha \vec{X_i}^T(\vec{W}_{old}\cdot \vec{X_i}-y_i)$$  
 
-   But somehow, when people are talking about SGD in ANN, they are actually talking about mini-batch gradient descent.  
+   *(But somehow, when people are talking about SGD in ANN, they are actually talking about mini-batch gradient descent.)*  
 
    Basically, in **Mini-batch Gradient Descent**, you first divides your dataset to many *batches* so that each batch have the same number(called "batch size", usually denoted as $b$) of training examples that are **randomly** picked out from the dataset except for the last batch, which might have a smaller number of training examples.  
 
@@ -157,7 +157,7 @@
    
    So, as the first step of MLE, the joint probability for all $y_i$ or likelihood function of $y$ would be:  
    
-   $$\begin{align}L(W)&=\Pi_{i=1}^{m}P((y_i|\vec{X}_i)_{W})\\&=\Pi_{i=1}^{m} \frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(y_i-W\cdot \vec{X}_i)^2}{2\sigma^2})\end{align}$$
+   $$\begin{align}L(W)&=\prod_{i=1}^{m}P((y_i|\vec{X}_i)_{W})\\&=\prod_{i=1}^{m} \frac{1}{\sqrt{2\pi}\sigma}\exp(-\frac{(y_i-W\cdot \vec{X}_i)^2}{2\sigma^2})\end{align}$$
    
    Then, the log likelihood function would be: 
    

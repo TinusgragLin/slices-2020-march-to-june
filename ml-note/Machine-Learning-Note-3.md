@@ -56,7 +56,7 @@ $$ (k_0^{\prime},k_1^{\prime},\cdots,k_n^{\prime})=(k_0,k_1,\cdots,k_n)+\alpha(-
 
   Now we can use **Maximum Likelihood Estimate**. 
 
-  $$\begin{align}L(W)&=\Pi_{i=1}^{m}f(y_i|H(\vec{X}_i))\\&=\Pi_{i=1}^{m}(H(\vec{X}_i))^{y_i}(1-H(\vec{X}_i))^{1-y_i}\end{align}$$
+  $$\begin{align}L(W)&=\prod_{i=1}^{m}f(y_i|H(\vec{X}_i))\\&=\prod_{i=1}^{m}(H(\vec{X}_i))^{y_i}(1-H(\vec{X}_i))^{1-y_i}\end{align}$$
 
   Again, the log likelihood: 
 
@@ -68,38 +68,62 @@ $$ (k_0^{\prime},k_1^{\prime},\cdots,k_n^{\prime})=(k_0,k_1,\cdots,k_n)+\alpha(-
 
   What is the Newton's method? Well, it is originally a method to estimate the zero points of a function. It has been widely used in finding the minimum or maximum of a function by finding the zero point of the first derivative of that function.  
 
-  Generally, given an $n$-ary function $f(\vec{X}):\R^n\rightarrow \R$ which, we assume, is twice differentiable, we now seek to solve the optimization problem: 
+  Generally, given an $n$-ary function $f(\vec{x}):\R^n\rightarrow \R$ which, we assume, is twice differentiable, we now seek to solve the optimization problem: 
 
-  $$min\, f(\vec{X})$$  
+  $$min\, f(\vec{x})$$  
 
-  Say we are now at $\vec{X_k}$, then the *second-order Taylor expansion* of $f(\vec{X})$ in the **vicinity** of $\vec{X}_k$ would be: 
+  Say we are now at $\vec{x_k}$, then the **second-order Taylor expansion** of $f(\vec{x})$ in the **vicinity** of $\vec{x}_k$ would be: 
 
-  $$f(\vec{X}_k)+[\nabla_{\vec{X}} f(\vec{X}_k)]^T(\vec{X}-\vec{X}_k)+\frac{1}{2!}(\vec{X}-\vec{X}_k)^T H_{f}(\vec{X}_k)(\vec{X}-\vec{X}_k)\approx f(\vec{X})\tag{1}$$
+  $$f(\vec{x}_k)+\frac{1}{1!}[\nabla_{\vec{x}} f(\vec{x}_k)]^T(\vec{x}-\vec{x}_k)+\frac{1}{2!}(\vec{x}-\vec{x}_k)^T H_{f}(\vec{x}_k)(\vec{x}-\vec{x}_k)\approx f(\vec{x})\tag{1}$$
 
-  where $H_f{\vec{X_k}}$ is the Hessian matrix of $f$ at $\vec{X_k}$. 
+  where $H_f{\vec{x_k}}$ is the Hessian matrix of $f$ at $\vec{x_k}$. 
 
-  We know that the closer $\vec{X}$ is to $\vec{X_k}$, the more accurate this approximation would be.  
+  We know that the closer $\vec{x}$ is to $\vec{x_k}$, the more accurate this approximation would be.  
 
-  Let's first rewrite our approximation function with now $g(\vec{X_k})$ denoting $\nabla_{\vec{X}} f(\vec{X}_k)$ :
+  Let's first rewrite our approximation function with now $g(\vec{x_k})$ denoting $\nabla_{\vec{x}} f(\vec{x}_k)$ :
 
-  $$f_{Approxi}(\vec{X})=f(\vec{X}_k)+g(\vec{X}_k)^T(\vec{X}-\vec{X}_k)+\frac12 (\vec{X}-\vec{X}_k)^T H_{f}(\vec{X}_k)(\vec{X}-\vec{X}_k)\tag{2}$$
+  $$f_{Approxi}(\vec{x})=f(\vec{x}_k)+g(\vec{x}_k)^T(\vec{x}-\vec{x}_k)+\frac12 (\vec{x}-\vec{x}_k)^T H_{f}(\vec{x}_k)(\vec{x}-\vec{x}_k)\tag{2}$$
 
-  Since $f_{Approxi}$ is an approximation of $f$, it is reasonable to think that the minimum point of $f_{Approxi}$ could be in some way close to the minimum point of $f$. But, remember, $f_{Approxi}$ is just the approximation of $f$ at **the vicinity** of $\vec{X_K}$, so if the minimum point of $f$ is very close to $\vec{X_k}$, then of course its approximation at $\vec{X_k}$ would also have a minimum point which is very close to the minimum point of $f$. But what if $\vec{X_k}$ is not that close to the minimum point of $f$?
+  Since $f_{Approxi}$ is an approximation of $f$, it is reasonable to think that the minimum point of $f_{Approxi}$ could be in some way close to the minimum point of $f$. But, remember, $f_{Approxi}$ is just the approximation of $f$ at **the vicinity** of $\vec{x_K}$, so if the minimum point of $f$ is very close to $\vec{x_k}$, then of course its approximation at $\vec{x_k}$ would also have a minimum point which is very close to the minimum point of $f$. But what if $\vec{x_k}$ is not that close to the minimum point of $f$?
 
-  Well, say your function $f$ has an minimum point $\vec{P}$,  it has been proven that if you jump to the minimum point of a approximation function $f_{Approxi}$ of $f$ at a certain point which is within a certain neighboring range of $\vec{P}$, you are actually approaching  $\vec{P}$, the real minimum point of $f$.  
+  Well, say your function $f$ has an minimum point $\vec{P}$,  it has been proven that if you jump to the minimum point of a approximation function $f_{Approxi}$ of $f$ at a certain point which is **within a certain neighboring range of** $\vec{P}$, you are actually approaching  $\vec{P}$, the real minimum point of $f$.  
 
-  So, if you do this iteratively, you would end up getting very very close to the minimum point of $f$.
+  So, if you do this iteratively, you would end up getting very very close to the minimum point of $f$ :  
 
-  This is then, Newton's method: 
+  <img src="newtons-method-iterative-process.gif" alt="newton-method-iterative-illustration" style="zoom:67%;" />
 
-  <img src="/home/lin/GitRepo/summary/ml-note/newtons-method-iterative-process.gif" alt="newtons-method-iterative-process" style="zoom: 67%;" />
+  This is then, Newton's method.
 
-  So, going back to our equation $(2)$ 
+  So, going back to our equation $(2)$, as the first iteration, we have to get the minimum point $\vec{x}_{k+1}$ of our approximation function $(2)$. As usual, we first take the gradient of $f_{Approxi}$ and then set it equal to zero : 
+
+  $$\begin{align}&(\nabla_{\vec{x}}f_{Approxi})|_{\vec{x}=\vec{x}_{k+1}}=g(\vec{x_k})^T+H_f(\vec{x_k})(\vec{x}_{k+1}-\vec{x_k})=\vec{0}\\\Rightarrow\,&(\vec{x}_{k+1}-\vec{x_k})=-[H_f(\vec{x_k})]^{-1}g(\vec{x_k})\\\Rightarrow\,&\vec{x}_{k+1}=\vec{x_k}-[H_f(\vec{x_k})]^{-1}g(\vec{x_k}) \tag{3} \end{align}$$ 
+
+  With $d(\vec{x_k})$ denoting $-[H_f(\vec{x_k})]^{-1}g(\vec{x_k})$, we can rewrite equation $(3)$ as: 
+
+  $$\vec{x}_{k+1}=\vec{x_k}+d(\vec{x_k}) \tag{4}$$　
+
+  This is then, our iterative equation. As the iterative process goes on, the $g(\vec{x}_k)$ term is approaching $0$, so you can stop the process when $g(\vec{x}_k)$ is small enough.  
+
+  In practice, this method could have many problems, fist, the start point has to be close enough to the minimum point otherwise it might not work, second, if the size of  the Hessian matrix $H_f$ is huge, computing its reverse would be extremely time-consuming. 
+
+  Damping Newton's method is put forward to solve the first problem and some quasi Newton's method including   SR1, DFP, BFGS are invented to address the second.   
+
+  The basic idea behind quasi newton's methods is to find a matrix(or the inverse of a matrix) that has an important properties that $H_f$ has, so that this matrix could substitute $H_{f}$ (or $H_f^{-1}$) and make it easier to iterate without having to inverse a matrix. The crucial property that $H_f$ has is called quasi Newton's method condition.   
+
+  More at: 
+
+  <https://blog.csdn.net/u012294618/article/details/79750224>
+
+  <https://blog.csdn.net/songbinxu/article/details/79677948>
+
+  <https://zhuanlan.zhihu.com/p/30779948>
+
+  <https://zhuanlan.zhihu.com/p/37524275>
+
+  <https://zhuanlan.zhihu.com/p/81623816>
 
 - Some articles that might be helpful or dive more deeply :
 
   [Stanford CS109 L25 Note[PDF]](http://web.stanford.edu/class/cs109/lectureNotes/LN25_logistic_regression.pdf)
-
-  [machinelearningmastery-LR](https://machinelearningmastery.com/logistic-regression-for-machine-learning/)
 
   [Interpretable ML Book - LR](https://christophm.github.io/interpretable-ml-book/logistic.html)
