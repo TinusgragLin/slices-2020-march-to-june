@@ -18,9 +18,9 @@
 
    according to **Maximum Likelihood Estimate**(Gaussian Distribution), we need to maximize:  
   
-   $$ F_{likelihood}=-\frac{1}{2\sigma^2}\sum_{i=1}^{m} (y_i-H(\vec{w},b,\vec{x_i}))^2-n\ln \sigma\sqrt{2\pi}$$  
+   $$ F_{likelihood}=-\frac{1}{2\sigma^2}\sum_{i=1}^{m} (y_i-H(\vec{w},b,\vec{x_i}))^2-m\ln \sigma\sqrt{2\pi}$$  
   
-   Since $\sigma$ and $n$ is constant, to maximize $F_{likelihood}$ means to minimize: 
+   Since $\sigma$ and $m$ is constant, to maximize $F_{likelihood}$ means to minimize: 
   
    $$ \sum_{i=1}^{m} (y_i - H(\vec{w},b,\vec{x_i}))^2 $$
   
@@ -65,7 +65,7 @@
    
    $$ D=[\vec{X_1},\vec{X_2},\cdots,\vec{X_m}] $$
 
-5. Calculate Gradient in Matrix Notation and Use Matrix Opration
+5. Calculate Gradient in Matrix Notation and Use Matrix Operation
 
    In practice, we may rewrite everything in matrix notation: 
 
