@@ -8,7 +8,7 @@ Before we start discussing optimal margin classifier, let us first look back at 
 
 Say each instance in your dataset has only two attributes and your dataset looks like this:  
 
-![logistic-regression](/home/lin/GitRepo/summary/ml-note/logistic-regression.png)
+![logistic-regression](logistic-regression.png)
 
 where $x_1,x_2$ axises each indicates one attribute of an instance and here a square stands for one positive instance while a triangle is one negative instance.  
 
@@ -16,11 +16,11 @@ And what LR is doing is simply trying to find a line (your $z=\vec{w}\cdot\vec{x
 
 So logistic regression algorithm may come up with a decision boundary like the *green* line below which indeed perfectly separates the two classes: 
 
-![logistic-regression-decision-boundary](/home/lin/GitRepo/summary/ml-note/logistic-regression-decision-boundary.png)
+![logistic-regression-decision-boundary](logistic-regression-decision-boundary.png)
 
 But the red line, which also separates the two classes but has a larger distance to all the points than the green line, seems to have done a better job while the green decision boundary is so close to some of the points that with a little rotation, it could just mis-classify these points.  
 
-Or, looking back to logistic regression, when a point is very close to the decision boundary, $z$ is very close to $0$, which means $g(z)$ is very close to 0.5 and since $g(z)$ is the probability of $y=1$, this means that the algorithm is not so sure about $y=1$ or $y=0$. In contrast, when a point is quite far away from the decision boundary, $g(z)$ is very close to 1 or 0, indicating that the algorithm is quite sure about $y$ being 1 or 0. So we certainly want the distance between the decision boundary and all the points as larger as possible. Now note that this equals to **making the distance between the hyper plane and those example points that are closest to the hyper plane(you might have more than one) as larger as possible** because, apparently, if the closest are as far away as possible from the hyper plane, the rest are also as far away as possible from the plane.  
+Or, looking back to logistic regression, when a point is very close to the decision boundary, $z$ is very close to $0$, which means $g(z)$ is very close to 0.5 and since $g(z)$ is the probability of $y=1$, this means that the algorithm is not so sure about $y=1$ or $y=0$. In contrast, when a point is quite far away from the decision boundary, $g(z)$ is very close to 1 or 0, indicating that the algorithm is quite sure about $y$ being 1 or 0. So we certainly want the distance between the decision boundary and all the points as larger as possible. Now note that this equals to **making the distance between the hyper plane and those example points that are closest to the hyper plane as larger as possible** because, apparently, if the closest are as far away as possible from the hyper plane, the rest are also as far away as possible from the plane.  
 
 So, how can we get such a decision boundary(or hyper plane)?  
 
@@ -42,6 +42,8 @@ $$d=|\hat{n}\cdot (\vec{p}-\vec{q})|=\frac{1}{||\vec{w}||}|\vec{w}^T\cdot (\vec{
 
 So, for a example $\vec{x}$ in the dataset, the distance to the hyper plane is just $\frac{1}{||\vec{w}||}|\vec{w}\cdot\vec{x}+b|$.
 
+![logistic-regression-decision-boundary-margin](logistic-regression-decision-boundary-margin.png)
+
 Remember that our goal is to **maximize** the distance between the hyper plane and those example points that are **nearest** to the hyper plane. So, in other words, what we want to maximize is the shortest *point-plane distance*, and let us call this distance $\gamma$: 
 
 $$\gamma=\frac{1}{||\vec{w}||}|\vec{w}\cdot\vec{x}_{nearest}+b|$$   
@@ -62,23 +64,23 @@ With this constraint, our $\gamma$ is now really the shortest *point-plane dista
 
 Now that we want to maximize $\gamma$, this becomes a optimal problem: choose $\vec{w},b$  to maximize $\gamma$ which satisfies the constraint above. So this is: 
 
-$$\begin{align}\arg_{\vec{w},b}&\max\ \gamma\\&s.t.\ \frac{1}{||\vec{w}||}|\vec{w}\cdot\vec{x_i}+b|\ge\gamma,\quad i=1,2,\cdots,m\end{align}$$
+$$\begin{align}\underset{\vec{w},b}{\operatorname{argmax}}\ &\gamma\\s.t.\ &\frac{1}{||\vec{w}||}|\vec{w}\cdot\vec{x_i}+b|\ge\gamma,\quad i=1,2,\cdots,m\end{align}$$
 
 It's not that easy to solve this optimal problem, we have to simplify it a little bit. 
 
 First, we can define $\hat{\gamma}=||\vec{w}||\gamma=|\vec{w}\cdot\vec{x}_{nearest}+b|$, then the optimal problem becomes: 
 
-$$\begin{align}\arg_{\vec{w},b}&\max\ \frac{\hat\gamma}{||\vec{w}||}\\&s.t.\ |\vec{w}\cdot\vec{x_i}+b|\ge\hat{\gamma},\quad i=1,2,\cdots,m\end{align}$$
+$$\begin{align}\underset{\vec{w},b}{\operatorname{argmax}}\ &\frac{\hat\gamma}{||\vec{w}||}\\s.t.\ &|\vec{w}\cdot\vec{x_i}+b|\ge\hat{\gamma},\quad i=1,2,\cdots,m\end{align}$$
 
-what is quite special about this term is that this term can be scaled to any value by scaling $\vec{w}$ and $b$ together without changing $\gamma$ or the constraint. So why not make it equal to 1?  
+What is quite special about this term is that this term can be scaled to any value by scaling $\vec{w}$ and $b$ together without changing $\gamma$ or the constraint. So why not make it equal to 1?  
 
 So now we have: 
 
-$$\begin{align}\arg_{\vec{w},b}&\max\ \frac{1}{||\vec{w}||}\\&s.t.\ |\vec{w}\cdot\vec{x_i}+b|\ge1,\quad i=1,2,\cdots,m\end{align}$$
+$$\begin{align}\underset{\vec{w},b}{\operatorname{argmax}}\ &\frac{1}{||\vec{w}||}\\s.t.\ &|\vec{w}\cdot\vec{x_i}+b|\ge1,\quad i=1,2,\cdots,m\end{align}$$
 
-This is equivalent to the quadratic problem below:  
+This is equivalent to the quadratic optimization problem below:  
 
-$$\begin{align}\arg_{\vec{w},b}&\max\ \frac12\vec{w}^2\\&s.t.\ |\vec{w}\cdot\vec{x_i}+b|\ge1,\quad i=1,2,\cdots,m\end{align}$$
+$$\begin{align}\underset{\vec{w},b}{\operatorname{argmax}}\ &\frac12\vec{w}^2\\s.t.\ &|\vec{w}\cdot\vec{x_i}+b|\ge1,\quad i=1,2,\cdots,m\end{align}\tag{2}$$
 
 *(the $\frac12$ term is just for simplifying later mathematical derivation.)*
 
@@ -86,8 +88,5 @@ The only thing that seems complicated is the absolute function $|\cdot|$, to mak
 
 $$|\vec{w}\cdot\vec{x_i}+b|=y_i(\vec{w}\cdot\vec{x_i}+b)$$
 
+*(I have a problem understanding this. The equation above is true only when $y_i$ and the sign of $\vec{w}\cdot\vec{x_i}+b$ is related, that is, if $\vec{w}\cdot\vec{x_i}+b$ is negative, then $y_i$ is $-1$ and when $\vec{w}\cdot\vec{x_i}+b$ is positive, $y_i$ is $1$. But this happens only when  $\vec{w}\cdot\vec{x_i}+b=0$ has perfectly separates the positive and negative examples!! )*
 
-
-![logistic-regression-decision-boundary-margin](/home/lin/GitRepo/summary/ml-note/logistic-regression-decision-boundary-margin.png)
-
-For the convenience of deriving the algorithm, 
