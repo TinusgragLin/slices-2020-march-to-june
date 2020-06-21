@@ -2,7 +2,7 @@
 
 ## Support Vector Machine
 
-#### Optimal Margin Classifier - Basic Problem
+#### 1. Optimal Margin Classifier - Basic Problem
 
 Before we start discussing optimal margin classifier, let us first look back at logistic regression. 
 
@@ -12,7 +12,7 @@ Say each instance in your dataset has only two attributes and your dataset looks
 
 where $x_1,x_2$ axises each indicates one attribute of an instance and here a square stands for one positive instance while a triangle is one negative instance.  
 
-And what LR is doing is simply trying to find a line (your $z=\vec{w}\cdot\vec{x}+b$) that can separate positive and negative examples. 
+And what LR is doing is simply trying to find a line (your $\vec{w}\cdot\vec{x}+b=0$) that can separate positive and negative examples. 
 
 So logistic regression algorithm may come up with a decision boundary like the *green* line below which indeed perfectly separates the two classes: 
 
@@ -92,7 +92,7 @@ $$|\vec{w}\cdot\vec{x_i}+b|=y_i(\vec{w}\cdot\vec{x_i}+b)$$
 
 $$\begin{align}\underset{\vec{w},b}{\operatorname{argmin}}\ &\frac12||\vec{w}||^2\\s.t.\ &y_i(\vec{w}\cdot\vec{x_i}+b)\ge1,\quad i=1,2,\cdots,m\end{align}\tag{1}$$
 
-#### Lagrange Multiplier Method & KKT Conditions
+#### 2. Lagrange Multiplier Method & KKT Conditions
 
 ##### 1. Equality Constrained Optimization
 
@@ -215,7 +215,7 @@ Which we would assume true in SVM for the reason that we need this to simplify p
 We can finally give the process of how we can actually find the minimum of $f(\vec{x})$: 
 
 1. Find the minimum $\mathcal{L}_{\alpha}(\vec{x}^*)$ of $\mathcal{L}_{\alpha}(\vec{x})$ with respect to $\vec{x}$  and the corresponding minimum point $\vec{x}^*(\vec{\alpha})$ as two functions of $\vec{\alpha}$.
-2. Choose $\vec{\alpha}^*$ that maximize $\mathcal{L}_{\alpha}(\vec{x}^*)$ and get the corresponding minimum point $\vec{x}^*(\vec{\alpha}^*)$. 
+2. Choose $\vec{\alpha}^*$ that maximize $\mathcal{L}_{\alpha}(\vec{x}^*)$ and get the corresponding minimum point $\vec{x}^*(\vec{\alpha}^*)$ which is our minimum point $\vec{x}^{+}$ for $f(\vec{x})$. 
 3. **Note that when processing steps above, KKT conditions $(5)$ are and should be always satisfied.** 
 
 ##### 3. Using Lagrange Method
@@ -249,3 +249,91 @@ $$\begin{align}min\ \mathcal{L}(\vec{w})=\mathcal{L}(\vec{w}^*)=&\sum_{i=1}^{m}\
 So now we have to maximize this $F(\vec{\alpha})$ with respect to $\vec{\alpha}$, also remember that we have some constraints for $\vec{\alpha}$ in $(5)$ and $(11)$:
 
 $$\begin{align}maximize\ &F(\vec{\alpha})\\s.t.\ &\sum_{i=1}^{m}\alpha_i y_i=0\\&\alpha_i\ge0\end{align}$$
+
+Using SMO algorithm, we can solve $\vec{\alpha}^*$ for this optimization problem. Thus we can get $\vec{w}^+=\vec{w}^*(\vec{\alpha}^*)$ from $(10)$.
+
+For any $\alpha_i^*>0$ in $\vec{\alpha}^*$, from the second condition in $(5)$, we can infer that $g_i(\vec{w}^+,b^+)=0$, thus we can solve $b^+$.
+
+#### 3. Predict 
+
+Now that we have solve $\vec{w}^+$ and $b^+$, for the optimal margin classifier optimization problem $(1)$. Now we want to predict a new example $\vec{x}^{\prime}$. 
+
+So the optimal desicion boundary or the optimal hyper plane we get is:
+
+$$\vec{w}^+\cdot\vec{x}+b^+=0$$
+
+Note that $\vec{w}^+=\vec{w}^*(\vec{\alpha}^*)$ and expand $\vec{w}^*$ using $(10)$:
+
+$$\sum_{i=1}^{m}\alpha^*_i y_i (\vec{x}_i^T\cdot\vec{x})+b^+=0$$
+
+So we need to do is just to calculate:
+
+$$z=\sum_{i=1}^{m}\alpha^*_i y_i (\vec{x}_i^T\cdot\vec{x}^{\prime})+b^+$$
+
+and predict 1 if $z\ge0$, -1 if $z<0$.
+
+#### 4. Inprovements
+
+##### 1. Soft Margin for Overcoming Overfiting
+
+Consider a dataset like this 
+
+<img src="soft-margin-motivation.png" alt="soft-margin-motivation" style="zoom: 33%;" />
+
+
+
+
+
+
+
+
+
+##### 2. Kenel Trick for Non-linear Classification and Avoiding Inner Products Calculation
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### 5. SMO Algorithm
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### 6. More At
+
+[Zhihu Column - Support Vector Machine](https://zhuanlan.zhihu.com/p/77750026)
+
+[Quora - What is an intuitive explanation of the KKT conditions?](https://www.quora.com/What-is-an-intuitive-explanation-of-the-KKT-conditions)
+
+[Pluskid's Blog - SVM Series](http://blog.pluskid.org/?page_id=683)
