@@ -73,7 +73,7 @@ In machine learning, on one hand we want the model to fit the training set well,
 
 But if your model fits the training set too well, it then has a preference for the training set so some random noises in the training set might be considered too significant by the algorithm, thus it might not perform well in other dataset.  
 
-![bias-and-variance-in-parameter-perspective](C:\Users\l2441\GitRepo\summary\ml-note\bias-and-variance-in-parameter-perspective.png)
+![bias-and-variance-in-parameter-perspective](bias-and-variance-in-parameter-perspective.png)
 
 More at [Zhihu - Answer to One Related Question](https://www.zhihu.com/question/27068705)
 

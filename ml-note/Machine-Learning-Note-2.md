@@ -42,7 +42,7 @@
 
    $$ (k_{1}^{\prime},k_{2}^{\prime},\cdots,k_{n}^{\prime},b^{\prime})=(k_1,k_2,\cdots,k_n,b)+\alpha[-\vec{\nabla}\cdot H] $$
 
-   where $\vec{\nabla}=(\frac{\part}{\part k_1},\frac{\part}{\part k_2},\cdots,\frac{\part}{\part k_n},\frac{\part}{\part b})$, and $\alpha$ is the so called the "learning rate". If we have only three variables $k_1,k_2,b$, it is the length of the xOy projection of the trajectory we "walked" in the plane.
+   where $\vec{\nabla}=(\frac{\partial}{\partial k_1},\frac{\partial}{\partial k_2},\cdots,\frac{\partial}{\partial k_n},\frac{\partial}{\partial b})$, and $\alpha$ is the so called the "learning rate". If we have only three variables $k_1,k_2,b$, it is the length of the xOy projection of the trajectory we "walked" in the plane.
    
    As you may have noticed, as we approach a local or the global minimum, the $-\nabla\cdot H$ term approaches $(0,0,\cdots,0)$, in other word, the step we are going to make is becoming smaller and smaller as we approach the minimum. So it will be reasonable if we set a minimum step distance, the whole process comes to a halt when the step we make is smaller than the minimum step distance.  
    
@@ -75,7 +75,7 @@
 
    where $D_{(n+1)\times m}=[\vec{X_1},\vec{X_2},\cdots,\vec{X_m}] $ is our modified dataset(or designed matrix), $\vec{W}_{1\times(n+1)}=[k_0,k_1,k_2,\cdots,k_n]$, $\vec{Y}_{1\times m}$ is our label matrix. We can then get the gradient of $L$ : 
 
-   $$(\nabla\cdot L)_{(n+1)\times 1}=\frac{\part L}{\part \vec{W}}=2D\cdot (\vec{W}\cdot D-Y)^{T} $$
+   $$(\nabla\cdot L)_{(n+1)\times 1}=\frac{\partial L}{\partial \vec{W}}=2D\cdot (\vec{W}\cdot D-Y)^{T} $$
 
    If you prefer "closed-form solution" or "normal equation", then you make this 0 and solve $\vec{W}$: 
    
@@ -93,7 +93,7 @@
 
    So in **Stochastic Gradient Descent**, instead of taking the derivative of $ L=\sum_{i=1}^{m}(y_i-H(\vec{W},\vec{x_i}))^2 $, we just take the derivative of $L_i=(y_i-H(\vec{W},\vec{x_i}))^2$, which is: 
 
-   $$ \frac{\part L_i}{\part k_j}=2a_k^{(i)}(H(W,\vec{x_i})-y_i) $$
+   $$ \frac{\partial L_i}{\partial k_j}=2a_k^{(i)}(H(W,\vec{x_i})-y_i) $$
 
    or more generally in matrix notation: 
 

@@ -198,7 +198,7 @@ And minimize this $\mathcal{L_{\vec{\alpha}^*}(\vec{x})}$:
 
 $$\underset{\vec{x}}{\operatorname{min}}\mathcal{L_{\vec{\alpha}^*}(\vec{x})}=\underset{\vec{x}}{\operatorname{min}}\underset{\alpha_1,\cdots,\alpha_m\ge0}{\operatorname{max}}\mathcal{L}_{\vec{\alpha}}(\vec{x})\tag6$$
 
-But there is another perspective: If the minimum of $f(\vec{x})$ is larger than or equal to all the minimum of $\mathcal{L}_{\alpha}(\vec{x})$ and the larger the minimum of $\mathcal{L}_{\alpha}(\vec{x})$ is, the closer it is to $f(\vec{x})$(or the larger the value of $\mathcal{L}_{\alpha}(\vec{x})$ at any given point within the feasible region). Then we can first find the minimum of all $\mathcal{L}_{\alpha}(\vec{x})$ with different $\vec{\alpha}$, and look at one particular $\mathcal{L}_{\alpha^*}(\vec{x})$ which has the max minimum among all the $\mathcal{L}_{\alpha}(\vec{x})$, which according to our assumption is very close to $f(\vec{x})$, then find the corresponing minimum point $\vec{x}^*$ for $\mathcal{L}_{\alpha^*}(\vec{x})$, and this $\vec{x}^*$, which is a function of $\vec{\alpha}$ , according to our assumption, is very close to the minimum point of $f(\vec{x})$. So what we want is actually find $\vec{\alpha}^*$ that
+But there is another perspective: If the minimum of $f(\vec{x})$ is larger than or equal to all the minimum of $\mathcal{L}_{\alpha}(\vec{x})$ and the larger the minimum of $\mathcal{L}_{\alpha}(\vec{x})$ is, the closer it is to $f(\vec{x})$(or the larger the value of $\mathcal{L}_{\alpha}(\vec{x})$ at any given point within the feasible region). Then we can first find the minimum of all $\mathcal{L}_{\alpha}(\vec{x})$ with different $\vec{\alpha}$, and look at one particular $\mathcal{L}_{\alpha^*}(\vec{x})$ which has the max minimum among all the $\mathcal{L}_{\alpha}(\vec{x})$, which according to our assumption is very close to $f(\vec{x})$, then find the corresponding minimum point $\vec{x}^*$ for $\mathcal{L}_{\alpha^*}(\vec{x})$, and this $\vec{x}^*$, which is a function of $\vec{\alpha}$ , according to our assumption, is very close to the minimum point of $f(\vec{x})$. So what we want is actually find $\vec{\alpha}^*$ that
 
 $$\underset{\alpha_1,\cdots,\alpha_m\ge0}{\operatorname{max}}\underset{\vec{x}}{\operatorname{min}}\mathcal{L}_{\vec{\alpha}}(\vec{x})\tag7$$
 
@@ -234,7 +234,7 @@ Then make the gradient zero:
 
 $$\nabla_{\vec{w}} L(\vec{w},b)=0$$
 
-$$\frac{\part}{\part b} L(\vec{w},b)=0$$
+$$\frac{\partial}{\partial b} L(\vec{w},b)=0$$
 
 We would get: 
 
@@ -258,7 +258,7 @@ For any $\alpha_i^*>0$ in $\vec{\alpha}^*$, from the second condition in $(5)$, 
 
 Now that we have solve $\vec{w}^+$ and $b^+$, for the optimal margin classifier optimization problem $(1)$. Now we want to predict a new example $\vec{x}^{\prime}$. 
 
-So the optimal desicion boundary or the optimal hyper plane we get is:
+So the optimal decision boundary or the optimal hyper plane we get is:
 
 $$\vec{w}^+\cdot\vec{x}+b^+=0$$
 
@@ -272,9 +272,9 @@ $$z=\sum_{i=1}^{m}\alpha^*_i y_i (\vec{x}_i^T\cdot\vec{x}^{\prime})+b^+$$
 
 and predict 1 if $z\ge0$, -1 if $z<0$.
 
-#### 4. Inprovements
+#### 4. Improvements
 
-##### 1. Soft Margin for Overcoming Overfiting
+##### 1. Soft Margin for Overcoming Over-fitting
 
 Consider a dataset like this 
 
@@ -288,7 +288,7 @@ Consider a dataset like this
 
 
 
-##### 2. Kenel Trick for Non-linear Classification and Avoiding Inner Products Calculation
+##### 2. Kernel Trick for Non-linear Classification and Avoiding Inner Products Calculation
 
 
 
