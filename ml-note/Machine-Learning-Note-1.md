@@ -114,7 +114,7 @@ To do this, you need to compute the predicting errors on some other different da
 - $k$-fold Cross Validation\
   If you have a relatively small dataset, using the method above might end up having a unacceptably small training set. There is another method called $k$-fold cross validation.
 
-  The basic idea is that first randomly divide your dataset into $k$(usually $10$) pieces, hold out one of the $k$ sub dataset, train you model on the rest and compute the predicting error on the held-out sub dataset and again pick out another sub dataset, train on the rest and compute the error on the picked-out dataset. Do this $k$ times in total and compute the average error.
+  The basic idea is that first randomly divide your dataset into $k$(usually $10$) pieces, hold out one of the $k$ sub datasets, train you model on the rest and compute the predicting error on the held-out sub dataset and again pick out another sub dataset, train on the rest and compute the error on the picked-out dataset. Do this $k$ times in total and compute the average error.
 
   Then you can again adjust the model and hyper parameters until the average error is reasonably low. 
 
@@ -125,6 +125,6 @@ Sometimes among the features you have on your dataset, some of them are redundan
 
 The basic idea of feature selection is to see a feature does or does not have a significant influence in predicting a certain quality, and leave or drop that feature accordingly. 
 
-There are two ways to do this, one is called forward search which add one feature to the feature list if it matters, another one is called backward search which drop one feature from the feature list if it does not matters. 
+There are two ways to do this, one is called forward search which add one feature to the feature list if it matters, another one is called backward search which drop one feature from the feature list if it does not matter. 
 
 So basically, for forward search, you start with a empty list of feature and try adding one of the feature outside the feature list, train your model with the current feature list and see the change in the predicting error until you find the one which decreased the error the most, and do this until you feel you have enough features in the feature list or no other feature seems significant.

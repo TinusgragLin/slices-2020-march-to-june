@@ -49,7 +49,7 @@ Basically, you can consider the class label for each example in a dataset a rand
 
 ![gini-impurity-example-dataset-imperfect-split](gini-impurity-example-dataset-imperfect-split.svg)
 
-if we consider the right side of the splitting line as our sample space and therefore there are six "events", five of them being that the example is green and one of them being that the example is blue, thus the color(class) of a example become a random variable that have two values. As we can see that if we randomly pick one example out form the sample space, the probability of this example being blue is $p(blue)=1/6$ while the probability of this example being green is $p(green)=5/6$, much greater than the former, so there is no much surprise if we pick one out and find it green since the probability is high while if we find it blue, it might be a little surprise since the probablity is so low.  
+if we consider the right side of the splitting line as our sample space and therefore there are six "events", five of them being that the example is green and one of them being that the example is blue, thus the color(class) of a example become a random variable that have two values. As we can see that if we randomly pick one example out form the sample space, the probability of this example being blue is $p(blue)=1/6$ while the probability of this example being green is $p(green)=5/6$, much greater than the former, so there is no much surprise if we pick one out and find it green since the probability is high while if we find it blue, it might be a little surprise since the probability is so low.  
 
 So, in intuition, a event is less surprising if it is more likely to happen. Based on this intuition, we introduce the self information (or information content, "surprisal", which is also a random variable) of one single event $x$ as:
 
@@ -59,7 +59,7 @@ We also have:
 
 $$p(I(x))=p(x)$$
 
-And the information entropy is just the mean(or expected value) of all the self information value of all the possible events which describes the overall average *suprisal* of random variable $X$:
+And the information entropy is just the mean(or expected value) of all the self information value of all the possible events which describes the overall average *surprisal* of random variable $X$:
 
 $$H(X)=E[I_X]=\underset{x\in A_X}{\sum} p(I(x))\cdot I(x)=\underset{x\in A_X}{\sum}p(x)\cdot-\log p(x)=-\underset{x\in A_X}{\sum}p(x)\cdot\log p(x)$$
 
@@ -69,7 +69,7 @@ Just like knowing in advance that today will be windy and cloudy will decrease t
 
 $$\begin{align}H(X|Y)&=\underset{y\in A_Y}{\sum} p(y)H(X|Y=y)\\&=\underset{y\in A_Y}{\sum} p(y)\underset{x\in A_X}{\sum} p(x|y)\log p(x|y)\end{align}$$
 
-where $Y$ is a *discrete* random variable and the meanings of related symbols stays the same.
+where $Y$ is another *discrete* random variable and the meanings of related symbols stay the same.
 
 And the change of information entropy of random variable $X$ (called information gain):
 
@@ -77,7 +77,9 @@ $$IG=H(X|Y)-H(X)$$
 
 describes how the information of another related random variable $Y$ decreases the original entropy. 
 
-Going back to our problem, what we going to do is to purify every partitioned sub-set. It turns out that if the information entropy of a set is low, than the set tends to be more uniform. So 
+Going back to our problem, what we going to do is to purify every partitioned sub-set. It turns out that if the information entropy of a set is low, than the set tends to be more uniform. 
+
+So when choosing the best branching point, we evaluate what the information gain is after knowing the information of "whether the value of this feature being greater than the threshold or not" and when choosing the best feature, we evaluate the information gain of knowing the information of  this feature. 
 
 ![gini-impurity-example-dataset-imperfect-split-2](gini-impurity-example-dataset-imperfect-split-2.png)
 
